@@ -1,0 +1,24 @@
+{
+  "server": {
+    "port": 5000,
+    "host": "localhost",
+    "wsUrl": "ws://localhost:5000",
+    "appUrl": "http://localhost:5000",
+    "botToken": "d41d8cd98f00b204e9800998ecf8427e",
+    "publisherEndpoint": "/publisher",
+    "scholarEndpoint": ["/documents/:id", "/person/:id", "/persons", "/"],
+    "mediaEndpoint": "./media"
+  },
+  "app": {
+    "protocol": "http",
+    "host": "localhost",
+    "port": 5000,
+    "defaultLanguage": "ru",
+    "mediaServer": "http://media.d4s.io"
+  },
+  "mail": {
+    "transport": "",
+    "sender": "archivist@archivist"
+  },
+  "db_url": "postgres://prm:prm_pw@localhost:5432/prm"
+}

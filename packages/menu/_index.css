@@ -1,0 +1,76 @@
+.sc-header-menu {
+  height: 100%;
+  background: #fbfbfb;
+  overflow: visible;
+  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.2);
+  box-shadow: 0 1px 4px rgba(0,0,0,.2);
+  border-right: 1px solid #b5b5b5;
+  z-index: 99;
+}
+
+.sc-header-menu .se-actions {
+  margin-top: 50px;
+  border-top: 1px solid #c1c1c1;
+}
+
+.sc-header-menu .se-action {
+  display: block;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 18px;
+  text-align: center;
+  cursor: pointer;
+  border-bottom: 1px solid #c1c1c1;
+  border-right: 1px solid #c1c1c1;
+}
+
+.sc-header-menu .se-action.se-active {
+  -moz-box-shadow: inset 3px 0px 5px rgba(0, 0, 0, 0.8);
+  -webkit-box-shadow: inset 3px 0px 5px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 3px 0px 5px rgba(0, 0, 0, 0.8);
+  border-bottom: none;
+}
+
+.sc-header-menu .se-action:hover {
+  color: rgba(0,0,0, 1);
+  background: #ebebeb;
+}
+
+.sc-header-menu .se-action:focus {
+  color: rgba(0,0,0, 1);
+  outline: none;
+}
+
+.sc-header-menu .se-icon {
+  float: left;
+  width: 40px;
+  height: 40px;
+  background: url(/publisher/assets/archivist.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 5px 0px;
+}
+
+.sc-header-menu .sc-login-status {
+  position: absolute;
+  bottom: 0px;
+}
+
+.sc-header-menu .se-username {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  margin: 6px;
+  cursor: default;
+  border-radius: 50%;
+  line-height: 26px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.5);
+  background: #dedede;
+  transition: all 0.5s ease;
+}

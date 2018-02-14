@@ -1,0 +1,50 @@
+.sc-commentary {
+  background: rgba(147, 217, 11, 0.1);
+  border-bottom: 1px solid rgba(147, 217, 11, 0.3);
+  cursor: pointer;
+  padding: 0px 1px;
+  color: inherit;
+}
+
+.sc-text-property .sc-commentary.sm-highlighted {
+  background: rgba(147, 217, 11, 0.4);
+  border-bottom: 1px solid rgba(147, 217, 11, 0.7);
+}
+
+.sc-scrollbar .se-highlight.sm-commentary {
+  background-color: rgb(147, 217, 11);
+}
+
+.se-entity-entries .sc-entity-entry.se-commentary.se-active,
+.se-entity-entries .sc-entity-entry.se-commentary.se-active:hover {
+  border-left: 2px solid rgb(147, 217, 11);
+}
+
+.se-entity-entries .sc-entity-entry.se-commentary.se-focused,
+.se-entity-entries .sc-entity-entry.se-commentary:hover {
+  border-left: 2px solid rgba(147, 217, 11, 0.3);
+}
+
+.se-entity-entries .sc-entity-entry.se-commentary .se-title {
+  margin-bottom: 10px;
+  margin-right: 60px;
+}
+
+.se-entity-entries .sc-entity-entry.se-commentary .se-description {
+  margin-right: 0px;
+}
+
+.se-entity-entries .sc-entity-entry.se-commentary .se-type,
+.se-reference-item.se-commentary .se-type {
+  background: rgba(147, 217, 11, 0.7);
+}
+
+.sc-entity-entry.se-commentary .se-commentary-link {
+  right: 20px;
+}
+
+.sc-reader .se-entity-entries .sc-entity-entry.se-commentary.se-active,
+.sc-reader .se-entity-entries .sc-entity-entry.se-commentary.se-active:hover {
+  border-left: 2px solid rgba(147, 217, 11, 0.7);
+  background: rgba(147, 217, 11, 0.05);
+}

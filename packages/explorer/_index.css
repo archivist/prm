@@ -1,0 +1,238 @@
+@import './_meta-filters.css';
+@import './_resources.css';
+
+.sc-explorer .se-explorer-layout {
+  height: 100%;
+  position: relative;
+  margin: 10px 0px 0px 0px;
+  height: 100%;
+  position: relative;
+  padding: 90px 20px 0px 20px;
+}
+
+.sc-explorer .sc-searchbar {
+  position: relative;
+  z-index: 10;
+}
+
+.sc-explorer .sc-searchbar .se-search-input {
+  max-width: 100%;
+  border: 1px solid #E0E4E4;
+}
+
+.sc-explorer .sc-searchbar .se-search-submit {
+  position: absolute;
+  top: 5px;
+  right: 6px;
+  height: 30px;
+  line-height: 30px;
+  background: #4A90E2;
+  padding: 0px 10px;
+  color: #fff;
+  border-radius: 3px;
+}
+
+.sc-explorer .sc-searchbar .se-search-submit:hover,
+.sc-explorer .sc-searchbar .se-search-submit:active {
+  background: #4A90E2!important;
+}
+
+.sc-explorer .se-results-pane {
+  padding-top: 30px;
+}
+
+.sc-explorer .se-explorer-layout > .sc-split-pane {
+  padding: inherit;
+  margin-top: 70px;
+}
+
+.sc-explorer .sc-grid {
+  height: auto;
+  padding-bottom: 10px;
+  border: 1px solid #E0E4E4;
+  border-radius: 3px;
+  padding: 0px 20px;
+  margin-bottom: 10px;
+}
+
+.sc-explorer .sc-grid .se-row:hover {
+  background: none;
+}
+
+.sc-explorer .sc-document-item .se-topic-badges {
+  padding-top: 10px;
+}
+
+.sc-explorer .sc-document-item .se-topic-badge {
+  background: rgba(194, 234, 35, 0.16);
+  margin-right: 10px;
+  margin-bottom: 10px;
+  color: #888;
+  display: inline-block;
+  padding: 3px 5px;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 3px;
+}
+
+.sc-explorer .sc-document-item .se-topic-badge i {
+  margin-right: 5px;
+}
+
+.sc-explorer .sc-grid .sc-grid {
+  overflow: inherit;
+}
+
+.sc-explorer .sc-document-item.sm-expanded {
+  border-bottom: none;
+}
+
+.sc-explorer .se-document-fragment {
+  display: block;
+  clear: both;
+  color: inherit;
+}
+
+.sc-explorer .sc-document-item .se-document-fragment:first-of-type {
+  border-top: 1px solid #e6e6e6;
+}
+
+.sc-explorer .se-document-fragment > .se-cell {
+  display: table-cell;
+  float: none;
+  vertical-align: middle;
+}
+
+.sc-explorer .se-document-fragment .se-badge {
+  background: #fafafa;
+  text-align: center;
+  min-width: 60px;
+}
+
+.sc-explorer .se-document-fragment .se-badge .se-timecode {
+  font-size: 10px;
+}
+
+.sc-explorer .se-document-fragment:before,
+.sc-explorer .se-document-fragment:after { 
+  content: " "; 
+  display: table; 
+}
+
+.sc-document-item .se-document-photo {
+  height: 0;
+  padding-bottom: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: cover;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3),
+}
+
+.sc-document-item .se-meta-info > * {
+  display: inline-block;
+  padding-right: 15px;
+  color: #888;
+}
+
+.sc-document-item .se-document-title {
+  display: block;
+  font-size: 18px;
+  padding: 5px 0px;
+  color: inherit;
+}
+
+.sc-document-item .se-photo {
+  padding: 15px 10px 15px 0px;
+}
+
+.sc-explorer .se-sidebar {
+  overflow: auto;
+  margin: 0px 0px 0px 20px;
+}
+
+.sc-explorer .se-sidebar .se-total {
+  padding-bottom: 10px;
+  font-size: 20px;
+  font-style: italic;
+  color: #888;
+  width: 270px;
+}
+
+.sc-explorer .se-sidebar .sc-resource-entries .se-entry,
+.sc-explorer .se-sidebar .sc-topic-entries .se-entry {
+  display: inline-block;
+  padding: 5px;
+  margin: 5px;
+  background-color: rgba(132, 132, 132, 0.1);
+  color: #555;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.sc-explorer .se-panel {
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.sc-explorer .se-panel .se-title {
+  font-size: 14px;
+  color: #000;
+  padding: 10px 50px 10px 10px;
+  background: #fafafa;
+  border-bottom: 1px solid #ddd;
+  border-left: 4px solid transparent;
+}
+
+.sc-facets .se-tree-node {
+  position: relative;
+  font-size: 13px;
+  font-weight: 400;
+  border-bottom: 1px solid #E0E4E4;
+  padding: 10px 50px 10px 10px;
+  background: #fafafa;
+  border-bottom: 1px solid #ddd;
+  border-left: 4px solid transparent;
+  cursor: pointer;
+}
+
+.sc-facets .se-tree-node.level-1 { padding-left: 25px; }
+.sc-facets .se-tree-node.level-2 { padding-left: 41px; }
+.sc-facets .se-tree-node.level-3 { padding-left: 57px; }
+.sc-facets .se-tree-node.level-4 { padding-left: 73px; }
+.sc-facets .se-tree-node.level-5 { padding-left: 89px; }
+.sc-facets .se-tree-node.level-6 { padding-left: 105px; }
+
+.sc-facets .se-tree-node.sm-selected {
+  border-left: 4px solid #91bb04;
+  background: #fff;
+}
+
+.sc-facets .se-tree-node .se-tree-node-name {
+  padding-left: 20px;
+}
+
+.sc-facets .se-tree-node .selection {
+  float: right;
+  font-size: 23px;
+  padding: 9px 20px;
+  top: 0px;
+  position: absolute;
+  right: 0px;
+}
+
+.sc-facets .se-tree-node .selection.fa-square-o {
+  padding: 9px 23px;
+}
+
+.sc-facets .se-tree-node .expansion {
+  font-size: 23px;
+  position: absolute;
+  top: 7px;
+}

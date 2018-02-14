@@ -1,0 +1,111 @@
+.sc-read-document .se-spinner {
+  margin: 100px auto 0px;
+}
+
+.sc-reader .sc-surface.se-title {
+  font-size: 23px;
+  margin-bottom: 10px;
+}
+
+.sc-reader .sc-layout {
+  padding: 40px;
+}
+
+.sc-reader .sc-split-pane {
+
+}
+
+.sc-reader .sc-text-property {
+  white-space: pre-wrap;
+}
+
+.sc-reader .se-context-section {
+  background: #fafafa;
+  border-left: 1px solid var(--border-color);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+  min-width: 500px;
+}
+
+.sc-reader .se-context-section .se-toggle-context {
+  height: 41px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sc-reader .se-context-section .se-toggle-context .se-toggle-item {
+  float: left;
+  height: 41px;
+  line-height: 40px;
+  padding: 0px 20px;
+  color: #444;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sc-reader .se-context-section .se-toggle-context .se-toggle-item.se-active {
+  background: #eee;
+  border-bottom: 1px solid #444;
+}
+
+.sc-reader .se-main-section .sc-container-editor > * { margin-bottom: 20px; }
+.sc-reader .sc-toolbar { border-bottom: 1px solid var(--border-color); }
+
+.sm-mobile-layout .sc-reader > .se-mobile-header {
+  height: 100px;
+}
+
+.sm-mobile-layout .sc-reader > .se-mobile-header > .se-navigation-toggle {
+  float: right;
+  margin: 20px;
+  font-size: 50px;
+}
+
+.sm-mobile-layout .sc-reader > .se-main-section,
+.sm-mobile-layout .sc-reader > .se-context-section {
+  position: relative;
+}
+
+.sm-mobile-layout .sc-reader > .se-main-section .sc-scrollbar {
+  width: 50px;
+}
+
+.sm-mobile-layout .sc-reader > .se-main-section > .sc-scroll-pane > .se-scrollable {
+  left: 50px;
+}
+
+.sm-mobile-layout .sc-reader > .sm-active {
+  height: calc(100% - 100px);
+}
+
+.sm-mobile-layout .sc-reader > .se-context-section > .sc-context-panel {
+  /* display: none; */
+}
+
+.sm-mobile-layout .sc-reader .sc-tabbed-pane {
+  background: #fff;
+  height: calc(100% - 100px);
+}
+
+.sm-mobile-layout .sc-reader .se-tabs {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  height: 50px;
+}
+
+.sm-mobile-layout .sc-reader .se-tabs .se-tab {
+  flex-grow: 1;
+  height: 50px;
+  font-size: 20px;
+  line-height: 50px;
+  text-align: center;
+}
+
+.sm-mobile-layout .sc-tabbed-pane .se-tab-content {
+  top: 50px;
+  box-shadow: none;
+}
+
+.sm-mobile-layout .sc-reader .se-context-section {
+  border-left: none;
+  box-shadow: none;
+}

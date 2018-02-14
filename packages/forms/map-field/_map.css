@@ -1,0 +1,28 @@
+.sc-field-map {
+  position: relative;
+}
+
+.sc-field-map .se-map {
+  height: 300px;
+}
+
+#geocode-selector {
+  position: absolute;
+  bottom: 50px;
+  right: 0px;
+  display: block;
+  width: 220px;
+  z-index: 999;
+  font-size: 12px;
+}
+
+#geocode-selector .selected {
+  background-color: #8BC34A;
+  color: #fff;
+}
+
+#geocode-selector .leaflet-bar {
+  float: left;
+  padding: 5px 10px;
+  margin: 3px;
+}

@@ -1,0 +1,64 @@
+.sc-context-subjects .se-content {
+  font-size: 12px;
+  padding: 0em;
+  line-height: 24px;
+}
+
+.se-tree-node {
+  display: block;
+  position: relative;
+  min-height: 1em;
+  padding: 1em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid transparent;
+  cursor: pointer;
+  font-size: 1.2em;
+  color: rgba(0,0,0,0.75);
+}
+
+.se-tree-node.sm-active {
+  border-left: 2px solid rgba(147, 217, 11, 0.7);
+  background: rgba(147, 217, 11, 0.05);
+  color: rgba(0,0,0,0.75);
+}
+
+.se-tree-node:hover {
+  color: rgba(0,0,0,0.75);
+  cursor: pointer;
+}
+
+.se-level-1 {
+  padding-left: 20px;
+}
+
+.se-level-2 {
+  padding-left: 40px;
+}
+
+.se-level-3 {
+  padding-left: 60px;
+}
+
+.se-level-4 {
+  padding-left: 80px;
+}
+
+.se-level-5 {
+  padding-left: 100px;
+}
+
+.se-level-6 {
+  padding-left: 120px;
+}
+
+.se-level-7 {
+  padding-left: 140px;
+}
+
+.se-level-8 {
+  padding-left: 160px;
+}
+
+.se-level-9 {
+  padding-left: 180px;
+}

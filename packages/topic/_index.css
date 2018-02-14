@@ -1,0 +1,8 @@
+.sc-scrollbar .se-highlight.sm-topic {
+  background-color: rgb(145, 187, 4);
+}
+
+.sc-text-property .sc-topic.sm-highlighted {
+  background: rgba(45, 187, 4, 0.2);
+  border-bottom: 1px solid rgba(45, 187, 4, 0.4);
+}

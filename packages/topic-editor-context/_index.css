@@ -1,0 +1,138 @@
+.sc-topics-panel .se-content {
+  font-size: 12px;
+  padding: 10px;
+  line-height: 24px;
+}
+
+.sc-topics-panel .se-tree-node {
+  padding: 2px 0px;
+  display: block;
+  font-weight: 600;
+  color: #999;
+}
+
+.sc-topics-panel .se-tree-node.sm-active {
+  color: #333;
+}
+
+.sc-topics-panel .se-tree-node:hover {
+  color: #333;
+  cursor: pointer;
+}
+
+.sc-topics-panel .se-level-1 {
+  padding-left: 20px;
+}
+
+.sc-topics-panel .se-level-2 {
+  padding-left: 40px;
+}
+
+.sc-topics-panel .se-level-3 {
+  padding-left: 60px;
+}
+
+.sc-topics-panel .se-level-4 {
+  padding-left: 80px;
+}
+
+.sc-topics-panel .se-level-5 {
+  padding-left: 100px;
+}
+
+.sc-topics-panel .se-level-6 {
+  padding-left: 120px;
+}
+
+.sc-topics-panel .se-level-7 {
+  padding-left: 140px;
+}
+
+.sc-topics-panel .se-level-8 {
+  padding-left: 160px;
+}
+
+.sc-topics-panel .se-level-9 {
+  padding-left: 180px;
+}
+
+.sc-topic-selector .sc-panel-header {
+  font-size: 12px;
+  line-height: 40px;
+  font-weight: 600;
+  overflow: hidden;
+  height: 40px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.sc-topic-selector .sc-panel-header .fa {
+  margin-right: 5px;
+}
+
+.sc-topic-selector .sc-panel-header .sc-goback-action {
+  padding: 0px 20px;
+  float: left;
+  cursor: pointer;
+}
+
+.sc-topic-selector .sc-panel-header .sc-actions {
+  overflow: hidden;
+  float: right;
+}
+
+.sc-topic-selector .sc-panel-header .sc-actions > div {
+  display: block;
+  float: left;
+  padding: 0px 4px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.sc-topic-selector .se-topic-tree {
+  top: 40px;
+}
+
+.sc-topic-selector .se-content {
+  padding: 0px;
+}
+
+.sc-topic-selector .se-entity-entry {
+  position: relative;
+  font-size: 13px;
+  font-weight: 400;
+  border-bottom: 1px solid #E0E4E4;
+  padding: 10px 50px 10px 10px;
+  background: #fafafa;
+  border-bottom: 1px solid #ddd;
+  border-left: 4px solid transparent;
+  cursor: pointer;
+}
+
+.sc-topic-selector .se-entity-entry.sm-selected {
+  border-left: 4px solid #91bb04;
+  background: #fff;
+}
+
+.sc-topic-selector .se-entity-entry .se-tree-node-name {
+  padding-left: 20px;
+}
+
+.sc-topic-selector .se-entity-entry .selection {
+  float: right;
+  font-size: 23px;
+  padding: 9px 20px;
+  top: 0px;
+  position: absolute;
+  right: 0px;
+}
+
+.sc-topic-selector .se-entity-entry .selection.fa-square-o {
+  padding: 9px 23px;
+}
+
+.sc-topic-selector .se-entity-entry .expansion {
+  font-size: 23px;
+  position: absolute;
+  top: 7px;
+}

@@ -1,0 +1,43 @@
+.sc-publisher .se-context-section {
+  min-width: 480px;
+}
+
+.sc-publisher .sc-tool-dropdown {
+  padding: 6px;
+}
+
+.sc-publisher .sc-tool-dropdown > .se-choices {
+  top: 40px;
+  z-index: 99;
+}
+
+.sc-publisher .sc-menu-item .se-icon {
+  padding: 7px 7px 7px 0px;
+}
+
+.sc-publisher .sm-role-volunteer .se-field-interview_type,
+.sc-publisher .sm-role-volunteer .se-field-interview_duration,
+.sc-publisher .sm-role-volunteer .se-field-interview_persons_present,
+.sc-publisher .sm-role-volunteer .se-field-interview_transcriber,
+.sc-publisher .sm-role-volunteer .se-field-collection,
+.sc-publisher .sm-role-volunteer .se-field-short_summary,
+.sc-publisher .sm-role-volunteer .se-field-abstract,
+.sc-publisher .sm-role-volunteer .se-field-comment,
+.sc-publisher .sm-role-volunteer .se-field-published_on,
+.sc-publisher .sm-role-volunteer .se-field-state,
+.sc-publisher .sm-role-volunteer .se-field-group-other {
+  display: none;
+}
+
+.sc-publisher .se-toolbar-wrapper.sm-role-respondent .sc-tool-group {
+  border-right: none;
+}
+
+.sc-publisher .se-toolbar-wrapper.sm-role-respondent .sc-toggle-tool,
+.sc-publisher .se-toolbar-wrapper.sm-role-respondent .sc-tool-dropdown {
+  display: none;
+}
+
+.sc-publisher .se-toolbar-wrapper.sm-role-respondent .sm-references .sc-toggle-tool:first-child {
+  display: block;
+}

@@ -1,0 +1,38 @@
+.sc-resources {
+  height: auto;
+  overflow-y: auto;
+  border: 1px solid #E0E4E4;
+  border-radius: 3px;
+  padding: 0px 20px;
+  margin-bottom: 10px;
+}
+
+.sc-resources .se-resource {
+  padding: 10px 0px;
+}
+
+.sc-explorer .sc-resources .sc-grid {
+  border: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.sc-resources .se-resource .se-title {
+  font-size: 18px;
+  padding-bottom: 5px;
+  clear: left;
+}
+
+.sc-resources .se-resource .se-prison-type {
+  float: left;
+  padding-bottom: 5px;
+}
+
+.sc-resources .se-resource .se-location {
+  float: right;
+  color: inherit;
+}
+
+.sc-resources .se-resource .se-location i {
+  margin-left: 5px;
+}

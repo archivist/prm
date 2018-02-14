@@ -1,0 +1,172 @@
+.sc-meta-filters {
+
+}
+
+.sc-meta-filters .se-filter {
+  position: relative;
+  margin: 0px 20px;
+  padding: 20px 0px;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.sc-meta-filters .se-filter:last-child {
+  border: none;
+}
+
+.sc-meta-filters .se-filter .se-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.sc-meta-filters .se-reset {
+  position: absolute;
+  right: 0px;
+  top: 20px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.sc-meta-filters > .se-reset {
+  top: 12px;
+  right: 10px;
+}
+
+.sc-meta-filters .se-reset i {
+  margin-left: 3px;
+}
+
+.sc-meta-filters select.se-select-filter {
+  display: block;
+  position: relative;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: normal;
+  background-color: #fff;
+  background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNDA1LjQ1NiA0MDUuNDU2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0MDUuNDU2IDQwNS40NTY7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4NCjxnPg0KCTxwYXRoIGQ9Ik03NC4xMzQsNjQuMTQ3Yy00Ljk4NSwwLjA3OC05LjkxMSwyLjE2My0xMy40MzgsNS42ODhsLTU1LDU1QzIuMDk2LDEyOC40MzIsMCwxMzMuNDkyLDAsMTM4LjU4MyAgIHMyLjA5NiwxMC4xNTEsNS42OTcsMTMuNzVsMTgzLjI4MSwxODMuMjgxYzMuNTk5LDMuNjAxLDguNjU5LDUuNjk3LDEzLjc1LDUuNjk3czEwLjE1MS0yLjA5NiwxMy43NS01LjY5N2wxODMuMjgxLTE4My4yODEgICBjMy42MDEtMy41OTksNS42OTctOC42NTksNS42OTctMTMuNzVzLTIuMDk2LTEwLjE1MS01LjY5Ny0xMy43NWwtNTUtNTVjLTMuNTk4LTMuNTkxLTguNjUxLTUuNjgxLTEzLjczNC01LjY4MSAgIGMtNS4wODMsMC0xMC4xMzYsMi4wOS0xMy43MzQsNS42ODFMMjAyLjcyOCwxODQuMzk3TDg4LjE2Niw2OS44MzNDODQuNDk5LDY2LjE2OSw3OS4zMTgsNjQuMDcsNzQuMTM0LDY0LjE0N0w3NC4xMzQsNjQuMTQ3eiIgZmlsbD0iIzk2OTY5NiIvPg0KPC9nPg0KPC9zdmc+DQo=);
+  background-position: right 10px top 50%;
+  background-repeat: no-repeat;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  -moz-appearance: none;
+  text-indent: 0.01px;
+  text-overflow: '';
+}
+
+.sc-meta-filters .se-radio-filter {
+  position: relative;
+  display: block;
+  vertical-align: middle;
+  padding: 0px;
+  clear: both;
+}
+
+.sc-meta-filters .se-radio-filter li label {
+  position: relative;
+  float: left;
+  display: inline-block;
+  max-width: 100%;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: #fff;
+  border-color: #e6e6e6;
+}
+
+.sc-meta-filters .se-radio-filter li:first-child label {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.sc-meta-filters .se-radio-filter li:last-child label {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: none;
+}
+
+.sc-meta-filters .se-radio-filter [type=radio],
+.sc-meta-filters .se-radio-filter [type=checkbox] {
+  border: 0; 
+  clip: rect(0 0 0 0); 
+  height: 1px; 
+  margin: -1px; 
+  overflow: hidden; 
+  padding: 0; 
+  position: absolute; 
+  width: 1px;
+}
+
+.sc-meta-filters .se-radio-filter > * {
+  display: inline-block;
+}
+
+.sc-meta-filters .se-radio-filter li > input:checked + label {
+  background-color: #ddd;
+  box-shadow: inset 0.1em 0.1em 0.5em rgba(#000, 0.5);
+}
+
+input[type="range"].multirange {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+}
+
+input[type="range"].multirange.original {
+  position: absolute;
+}
+
+input[type="range"].multirange.original::-webkit-slider-thumb {
+  position: relative;
+  z-index: 2;
+}
+
+input[type="range"].multirange.original::-moz-range-thumb {
+  transform: scale(1); /* FF doesn't apply position it seems */
+  z-index: 1;
+}
+
+input[type="range"].multirange::-moz-range-track {
+  border-color: transparent; /* needed to switch FF to "styleable" control */
+}
+
+input[type="range"].multirange.ghost {
+  position: relative;
+  background: var(--track-background);
+  --track-background: linear-gradient(to right,
+      transparent var(--low), var(--range-color) 0,
+      var(--range-color) var(--high), transparent 0
+    ) no-repeat 0 45% / 100% 40%;
+  --range-color: hsl(190, 80%, 40%);
+}
+
+input[type="range"].multirange.ghost::-webkit-slider-runnable-track {
+  background: var(--track-background);
+}
+
+input[type="range"].multirange.ghost::-moz-range-track {
+  background: var(--track-background);
+}

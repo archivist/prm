@@ -1,0 +1,10 @@
+/* Publisher Component styles */
+@import '../../node_modules/leaflet/dist/leaflet.css';
+@import '../../node_modules/leaflet-control-geocoder/dist/Control.Geocoder.css';
+@import './publisher.css';
+body { overflow: hidden; -webkit-font-smoothing: antialiased; }
+.sc-publisher { position: absolute; left: 0px; right: 0px; bottom: 0px; top: 0px; }
+
+.sc-welcome {
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(255, 152, 0, 0.3)), to(rgba(139, 195, 74, 0.3))), url('./assets/entrance.jpg')!important;
+}
