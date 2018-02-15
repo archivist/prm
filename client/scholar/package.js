@@ -1,7 +1,6 @@
 import { ProseEditorPackage } from 'substance'
 import ScholarPackage from '../../packages/scholar/package'
 import ExplorerPackage from '../../packages/explorer/package'
-import SubjectsPackage from '../../packages/subjects/package'
 import ReaderPackage from '../../packages/reader/package'
 import InterviewPackage from '../../packages/interview/package'
 import SourceContextPackage from '../../packages/source-context/package'
@@ -55,9 +54,6 @@ export default {
     EntitiesConfigurator.addNode(Geofeature)
     EntitiesConfigurator.addNode(Topic)
     config.addConfigurator('archivist-entities', EntitiesConfigurator)
-
-    // Subjects subconfigurator
-    config.addConfigurator('archivist-subjects', new ScholarSubConfigurator().import(SubjectsPackage))
 
     config.setAppConfig({
       protocol: appConfig.protocol,

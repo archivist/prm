@@ -59,7 +59,8 @@ function buildApp(app, production) {
           'node_modules/plyr/src/js/plyr.js',
           'node_modules/leaflet/dist/leaflet-src.js',
           'node_modules/leaflet.markercluster/dist/leaflet.markercluster-src.js',
-          'node_modules/leaflet-control-geocoder/dist/Control.Geocoder.js'
+          'node_modules/leaflet-control-geocoder/dist/Control.Geocoder.js',
+          'node_modules/dropzone/dist/dropzone.js'
         ]
       },
       external: ['substance', 'archivist'],

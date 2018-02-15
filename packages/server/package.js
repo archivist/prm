@@ -10,6 +10,7 @@ let DocumentServerPackage = require('./document/package')
 let ArchivistSubConfigurator = require('archivist-js').ArchivistSubConfigurator
 let AuthServerPackage = require('archivist-js').AuthServerPackage
 let CollabServerPackage = require('archivist-js').CollabServerPackage
+let FileServerPackage = require('./file/package')
 let UserServerPackage = require('archivist-js').UserServerPackage
 let InspectorPackage = require('archivist-js').InspectorPackage
 
@@ -30,6 +31,7 @@ module.exports = {
     config.import(DocumentServerPackage)
     config.import(AuthServerPackage)
     config.import(CollabServerPackage)
+    config.import(FileServerPackage)
     config.import(ResourceServerPackage)
     config.import(UserServerPackage)
     config.import(ConverterServerPackage)

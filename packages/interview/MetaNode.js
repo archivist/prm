@@ -62,7 +62,8 @@ MetaNode.define({
   abstract: {type: 'string', default: '', field: {editor: "multitext", description: "Введите аннотацию", group: 'Other'}},
   comment: {type: 'string', default: '', field: {editor: "multitext", description: "Введите комментарий", group: 'Other'}},
   published_on: {type: 'string', default: '', field: {editor: "input", dataType: "date", description: "Дата публикации (yyyy-MM-dd)", group: 'Other'}},
-  state: { type: 'string', default: '', field: { editor: "select", description: "Статус документа", options: ['transcripted', 'verified', 'finished', 'published'], group: 'Other'}}
+  state: { type: 'string', default: '', field: { editor: "select", description: "Статус документа", options: ['transcripted', 'verified', 'finished', 'published'], group: 'Other'}},
+  files: { type: ['metafile'], default: [] }
 })
 
 export default MetaNode

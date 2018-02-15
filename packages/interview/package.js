@@ -8,6 +8,7 @@ import CommentaryPackage from '../commentary/package'
 import GeofeaturePackage from '../geofeature/package'
 import TopicPackage from '../topic/package'
 import EntityReferencePackage from '../entity-reference/package'
+import FilePackage from '../files/package'
 
 export default {
   name: 'archivist-interview',
@@ -18,6 +19,7 @@ export default {
       DocumentClass: Interview,
       defaultTextType: 'paragraph'
     })
+    config.import(FilePackage)
     config.addNode(MetaNode)
     config.addSeed(InterviewSeed)
 

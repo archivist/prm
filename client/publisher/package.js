@@ -11,6 +11,7 @@ import GeofeatureManagerPackage from '../../packages/geofeature-manager/package'
 import PublisherPackage from '../../packages/publisher/package'
 import TopicManagerPackage from '../../packages/topic-manager/package'
 import TopicContextPackage from '../../packages/topic-editor-context/package'
+import FileContextPackage from '../../packages/file-context/package'
 import UsersPackage from '../../packages/users/package'
 import AuthenticationClient from './AuthenticationClient'
 import DocumentClient from './DocumentClient'
@@ -54,10 +55,11 @@ export default {
     // Add subconfigurators
     let EditorConfigurator = new ArchivistSubConfigurator()
     EditorConfigurator.import(PublisherPackage)
+    EditorConfigurator.import(MetadataEditorPackage)
     EditorConfigurator.import(TopicContextPackage)
     EditorConfigurator.import(CommentsPackage)
-    EditorConfigurator.import(MetadataEditorPackage)
     EditorConfigurator.import(ResourcesPackage)
+    EditorConfigurator.import(FileContextPackage)
     EditorConfigurator.import(InterviewPackage)
     EditorConfigurator.import(IndentationPackage)
     EditorConfigurator.import(WhitespacePackage)

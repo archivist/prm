@@ -38,5 +38,6 @@ config/production.json
 
 dist
 dist/doc
+media
 uploads
 tmp

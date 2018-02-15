@@ -1,9 +1,9 @@
-let ArchivistStorePackage = require('archivist-js').ArchivistStorePackage
+let StorePackage = require('../store/package')
 
 module.exports = {
   name: 'engine',
   configure: function(config) {
-    config.import(ArchivistStorePackage);
+    config.import(StorePackage);
     config.import(require('./mailer/package'))
     config.import(require('./auth/package'))
     config.import(require('archivist-js').CollabEnginePackage)

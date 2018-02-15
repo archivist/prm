@@ -4,6 +4,7 @@
   "description": "",
   "main": "dist/prm.cjs.js",
   "scripts": {
+    "postinstall": "mkdir -p media/s200 & mkdir -p media/s400 ",
     "start": "node server",
     "seed": "node seed",
     "bundle": "node make production",
@@ -16,6 +17,7 @@
     "bluebird": "^3.4.7",
     "body-parser": "^1.15.2",
     "config": "^1.21.0",
+    "dropzone": "^5.1.1",
     "express": "^4.14.0",
     "leaflet": "^1.0.3",
     "leaflet-control-geocoder": "^1.5.4",
@@ -23,7 +25,9 @@
     "lodash-es": "^4.17.4",
     "massive": "^2.5.0",
     "moment": "^2.17.1",
+    "multer": "^1.3.0",
     "plyr": "^2.0.11",
+    "sharp": "^0.18.2",
     "substance": "container-annos",
     "ws": "^1.1.1"
   },

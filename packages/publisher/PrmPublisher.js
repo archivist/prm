@@ -100,7 +100,7 @@ class PrmPublisher extends Publisher {
           contextPanel.openComment(overlapedComments[0])
         } else {
           let currentContext = contextPanel.state.contextId
-          if(currentContext !== 'metadata') {
+          if(currentContext !== 'metadata' && currentContext !== 'file-context') {
             contextPanel.openDefaultTab()
           }
         }

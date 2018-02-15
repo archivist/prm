@@ -1,0 +1,90 @@
+.sc-file-panel {
+  font-size: 13px;
+  padding: 20px;
+  line-height: 25px;
+  white-space: pre-wrap;
+}
+
+.sc-file-panel .se-droparea {
+  margin: 10px;
+  text-align: center;
+  border-style: dashed;
+}
+
+.sc-file-panel .se-droparea .dz-message {
+  margin: 3em 0;
+}
+
+.sc-file-panel .sc-file-item {
+  display: flex;
+  position: relative;
+  padding: 15px 10px;
+  border-bottom: 1px solid #eee;
+  margin: 10px 0px;
+  flex: 1 1 0;
+  align-items: center;
+}
+
+.sc-file-panel .sc-file-item .se-thumbnail {
+  background-size: cover;
+  height: 100px;
+  width: 100px;
+  margin-right: 10px;
+}
+
+.sc-file-panel .sc-file-item .se-remove-file {
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.sc-file-panel .sc-file-item .se-file-data {
+  margin-right: 10px;
+}
+
+.sc-file-panel .sc-file-item .se-file-data > * {
+  margin-bottom: 4px;
+}
+
+.sc-file-panel .sc-file-item .se-file-data .se-file-date {
+  width: 50%;
+}
+
+.sc-file-panel .sc-file-item .se-file-data .se-file-pos {
+  width: 50%;
+}
+
+.sc-file-panel .se-dropdown {
+  position: relative;
+  display: block;
+}
+
+.sc-file-panel .se-dropdown .se-select {
+  width: 100%;
+  margin: 0;
+  outline: none;
+  padding: 6px 20px 6px 10px;
+  background: transparent;
+  border: 1px solid #E0E4E4;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-size: 14px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.sc-file-panel .se-dropdown::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  z-index: 2;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 7px solid #666;
+  margin-top: -3px;
+}
