@@ -24,5 +24,9 @@ export default {
       en: 'Enter collection description',
       ru: 'Описание коллекции'
     })
+    config.addLabel('edit-action', {
+      en: 'Edit',
+      ru: 'Редактировать'
+    })
   }
 }

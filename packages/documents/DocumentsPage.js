@@ -1,5 +1,5 @@
 import { Component, FontAwesomeIcon as Icon, SplitPane, SubstanceError as Err } from 'substance'
-import { concat, each, findIndex, isEmpty, isEqual } from 'lodash-es'
+import { concat, each, find, findIndex, isEmpty, isEqual } from 'lodash-es'
 import moment from 'moment'
 
 // Sample data for debugging
@@ -386,11 +386,25 @@ class DocumentsPage extends Component {
   }
 
   _removeItem(id) {
-    let documentClient = this.context.documentClient
-    documentClient.deleteDocument(id, err => {
-      if(err) console.error(err)
-      this._loadData()
+    this._removeAttachedFiles(id, err => {
+      if(err) {
+        console.error(err)
+      } else {
+        let documentClient = this.context.documentClient
+        documentClient.deleteDocument(id, err => {
+          if(err) console.error(err)
+          this._loadData()
+        })
+      }
     })
+  }
+
+  _removeAttachedFiles(id, cb) {
+    const fileClient = this.context.fileClient
+    const items = this.state.items
+    const doc = find(items, item => { return item.documentId === id })
+    const files = doc.meta.files
+    fileClient.deleteFiles(files, cb)
   }
 
   /*

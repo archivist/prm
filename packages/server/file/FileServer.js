@@ -17,6 +17,7 @@ class FileServer {
   bind(app) {
     //app.get(this.path + '/rebuild', this._rebuildThumbs.bind(this))
     app.post(this.path, this.authEngine.hasAccess.bind(this.authEngine), this._uploadFile.bind(this))
+    app.delete(this.path, this.authEngine.hasAccess.bind(this.authEngine), this._removeFiles.bind(this))
     app.delete(this.path + '/:id', this.authEngine.hasAccess.bind(this.authEngine), this._removeFile.bind(this))
   }
 
@@ -102,6 +103,17 @@ class FileServer {
       if(err) return next(err)
       res.sendStatus(200)
     })
+  }
+
+  _removeFiles(req, res, next) {
+    let fileNames = req.query.files
+    return this.store.deleteFiles(fileNames)
+      .then(() => {
+        res.sendStatus(200)
+      })
+      .catch((err) => {
+        return next(err)
+      })
   }
 }
 

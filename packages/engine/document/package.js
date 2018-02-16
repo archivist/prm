@@ -10,7 +10,8 @@ module.exports = {
       snapshotFrequency: 50,
       documentStore: config.getStore('document'),
       changeStore: config.getStore('change'),
-      snapshotStore: config.getStore('snapshot')
+      snapshotStore: config.getStore('snapshot'),
+      fileStore: config.getStore('file')
     })
 
     config.addEngine('document', documentEngine)

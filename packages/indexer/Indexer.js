@@ -250,23 +250,6 @@ ORDER BY count DESC limit ${limit} offset ${offset}`
       })
     }.bind(this))
   }
-
-  _countEntityReferences(doc) {
-    return new Promise((resolve) => {
-      let entitiesIndex = doc.getIndex('entities')
-      let annotations = []
-      let references = {}
-      forEach(entitiesIndex.byReference, (refs, key) => {
-        annotations.push(key)
-        references[key] = Object.keys(refs).length
-      })
-
-      resolve({
-        annotations: annotations,
-        references: references
-      })
-    })
-  }
 }
 
 module.exports = Indexer

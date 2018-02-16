@@ -15,7 +15,8 @@
     "host": "localhost",
     "port": 5000,
     "defaultLanguage": "ru",
-    "mediaServer": "http://media.d4s.io"
+    "mediaServer": "http://media.d4s.io",
+    "mediaPath": "/media"
   },
   "mail": {
     "transport": "",

@@ -37,6 +37,14 @@ class FileClient {
   }
 
   /*
+    Remove files
+  */
+  deleteFiles(fileIds, cb) {
+    let files = encodeURIComponent(JSON.stringify(fileIds))
+    this.request('DELETE', this.config.httpUrl + '?files=' + files, null, cb)
+  }
+
+  /*
     Upload file to the server
   */
   uploadFile(file, cb) {

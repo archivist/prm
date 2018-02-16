@@ -91,7 +91,7 @@ class FileContext extends Component {
     let editorSession = this.context.editorSession
     editorSession.transaction((tx) => {
       let files = tx.get(['meta', 'files'])
-      let file = tx.create({id: fileName.split('.')[0], type: 'metafile', file: fileName})
+      let file = tx.create({id: fileName, type: 'metafile', file: fileName})
       files.push(file.id)
       tx.set(['meta', 'files'], files)
     })

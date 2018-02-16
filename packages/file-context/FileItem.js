@@ -1,10 +1,10 @@
 import { Component, FontAwesomeIcon as Icon } from 'substance'
 import moment from 'moment'
-const mediaDestination = '/media'
 const fileTypes = ['main-image', 'image', 'doc']
 
 class FileItem extends Component {
   render($$) {
+    const mediaPath = this.context.config.mediaPath
     const node = this.props.node
     const Input = this.getComponent('input')
 
@@ -13,7 +13,7 @@ class FileItem extends Component {
     if(this._isImage()) {
       el.addClass('sm-image').append(
         $$('div').addClass('se-thumbnail').attr({
-          style: 'background-image: url("' + mediaDestination + '/s200/' + node.file + '");'
+          style: 'background-image: url("' + mediaPath + '/s200/' + node.file + '");'
         })
       )
     }

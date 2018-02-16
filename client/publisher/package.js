@@ -91,7 +91,8 @@ export default {
       protocol: appConfig.protocol,
       host: appConfig.host,
       port: appConfig.port,
-      wsUrl: appConfig.wsUrl
+      wsUrl: appConfig.wsUrl,
+      mediaPath: appConfig.mediaPath
     })
 
     // Define Authentication Client

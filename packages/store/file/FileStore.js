@@ -1,6 +1,7 @@
 let fs = require('fs')
 let config = require('config')
 let multer = require('multer')
+let Promise = require('bluebird')
 let uuid = require('substance').uuid
 
 const serverConfig = config.get('server')
@@ -78,6 +79,24 @@ class FileStore {
       if(err) return cb(err)
       this.deleteSourceFile(fileName, cb)
     })
+  }
+
+  deleteFileAndThumb(fileName) {
+    return new Promise((resolve, reject) => {
+      this.deleteFile(fileName, err => {
+        if(err) return reject(err)
+        resolve()
+      })
+    })
+  }
+
+  deleteFiles(files) {
+    let fileList = JSON.parse(files)
+    let actions = []
+    for (let i = 0; i < fileList.length; i++) {
+      actions.push(this.deleteFileAndThumb(fileList[i]))
+    }
+    return Promise.all(actions)
   }
 }
 
