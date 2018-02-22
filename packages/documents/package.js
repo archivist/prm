@@ -32,6 +32,10 @@ export default {
       en: 'Select type',
       ru: 'Тип интервью'
     })
+    config.addLabel('select-birth-year', {
+      en: 'Select birth year',
+      ru: 'Год рождения'
+    })
     config.addLabel('select-respondent-sex', {
       en: 'Select sex',
       ru: 'Пол респондента'

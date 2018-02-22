@@ -1,4 +1,4 @@
-import { Component, SplitPane } from 'substance'
+import { Component, FontAwesomeIcon as Icon } from 'substance'
 import { clone, concat, each, extend, findIndex, findLastIndex, isEmpty, isEqual, isUndefined } from 'lodash-es'
 
 // Sample data for debugging
@@ -15,6 +15,7 @@ class Explorer extends Component {
       'openResource': this._showResource,
       'openTopic': this._showResource,
       'setTotal': this._setTotal,
+      'changeTopicFacets': this._onTopicsChanged,
       'applyMetaFilter': this._applyMetaFilter,
       'applyDateRangeFilter': this._applyDateRangeFilter,
       'resetMetaFilter': this._resetMetaFilter,
@@ -69,6 +70,8 @@ class Explorer extends Component {
       perPage: 30,
       order: "meta->>'published_on' desc, \"documentId\" desc",
       pagination: false,
+      showFilters: false,
+      topics: [],
       items: []
     }
   }
@@ -90,12 +93,40 @@ class Explorer extends Component {
       textAlign: 'left'
     }).addClass('se-explorer-layout')
 
-    layout.append(
-      $$(SearchBar, {value: this.state.search}),
-      $$(SplitPane, {splitType: 'vertical', sizeB: '30%'}).addClass('se-results-pane').append(
+    this._updateLayout()
+
+    let resultsPane = $$('div').addClass('se-results-pane')
+    let searchPane = $$('div').addClass('se-search-pane').append(
+      $$(SearchBar, {value: this.state.search})
+    )
+
+    if(this.props.mobile) {
+      let navigationToggle = $$('div').addClass('se-navigation-toggle').append(
+        $$(Icon, {icon: 'fa-bars'}).ref('headerIcon')
+      ).on('click', this._toggleNavigation)
+
+      if(this.state.showFilters) {
+        resultsPane.append(
+          this.renderSidebarSection($$)
+        )
+        navigationToggle.addClass('sm-active')
+      } else {
+        resultsPane.append(
+          this.renderMainSection($$)
+        )
+      }
+
+      searchPane.append(navigationToggle)
+    } else {
+      resultsPane.append(
         this.renderMainSection($$),
         this.renderSidebarSection($$)
       )
+    }
+
+    layout.append(
+      searchPane,
+      resultsPane
     )
 
     el.append(layout)
@@ -104,6 +135,13 @@ class Explorer extends Component {
   }
 
   renderMainSection($$) {
+    const resource = this.state.resource
+    const ResourceReference = this.getComponent('resource-reference')
+    if(resource) {
+      return $$(ResourceReference, {resource: resource, mobile: this.props.mobile})
+    }
+
+
     let documentItems = this.state.items
     if (documentItems.length > 0) {
       return this.renderFull($$)
@@ -113,13 +151,14 @@ class Explorer extends Component {
   }
 
   renderSidebarSection($$) {
+    const topics = this.state.topics
     let el = $$('div').addClass('se-sidebar')
     let ResourceEntries = this.getComponent('resource-entries')
     let TopicEntries = this.getComponent('topic-entries')
     let MetaFilters = this.getComponent('meta-filters')
     let Facets = this.getComponent('facets')
 
-    if(this.state.total) {
+    if(this.state.total && !this.props.mobile) {
       el.append(
         $$('div').addClass('se-total').append(
           this.getLabel('total-results') + ': ' + this.state.total
@@ -132,8 +171,13 @@ class Explorer extends Component {
       if(!isEmpty(this.state.entries)) el.append($$(ResourceEntries, {entries: this.state.entries}))
     }
 
+    if(topics.length > 0) {
+      el.append(
+        $$(Facets, {topics: topics, facets: this.state.filters.topics}).ref('facets')
+      )
+    }
+
     el.append(
-      $$(Facets, {topics: this.state.topics}).ref('facets'),
       $$(MetaFilters, {filters: this.state.metaFilters}).ref('filters')
     )
 
@@ -176,14 +220,16 @@ class Explorer extends Component {
 
     let items = this.state.items
     let total = this.state.total
-    let resource = this.state.resource
     let DocumentItem = this.getComponent('document-item')
     let Pager = this.getComponent('pager')
-    let ResourceReference = this.getComponent('resource-reference')
     let grid = $$(Grid)
 
-    if(resource) {
-      return $$(ResourceReference, {resource: resource})
+    if(this.state.total && this.props.mobile) {
+      grid.append(
+        $$('div').addClass('se-total').append(
+          this.getLabel('total-results') + ': ' + this.state.total
+        ).ref('total')
+      )
     }
 
     if(items) {
@@ -280,6 +326,16 @@ class Explorer extends Component {
     })
   }
 
+  _updateLayout() {
+    if (this.props.mobile) {
+      document.body.classList.remove('sm-fixed-layout')
+      document.body.classList.add('sm-mobile-layout')
+    } else {
+      document.body.classList.add('sm-fixed-layout')
+      document.body.classList.remove('sm-mobile-layout')
+    }
+  }
+
   /*
     Load more data
   */
@@ -362,10 +418,7 @@ class Explorer extends Component {
 
   _loadTopics(newFilters, search) {
     let resourceClient = this.context.resourceClient
-    let mainConfigurator = this.context.configurator
-    let configurator = mainConfigurator.getConfigurator('archivist-subjects')
     let filters = newFilters || this.state.filters
-    let facets = filters.topics
     let searchValue = search
     if(isUndefined(search)) searchValue = this.state.search
     let language = 'russian'
@@ -375,18 +428,14 @@ class Explorer extends Component {
       filters.language = language
     }
 
-    resourceClient.getSubjectsFacets(filters, (err, res) => {
+    resourceClient.getTopicsFacets(filters, (err, res) => {
       if (err) {
         console.error('ERROR', err)
         return
       }
 
-      let importer = configurator.createImporter('subjects')
-      let topics = importer.importDocument(res, true, facets)
-      topics.on('document:changed', this._onTopicsChanged, this)
-
       this.extendState({
-        topics: topics
+        topics: res
       })
     })
   }
@@ -394,6 +443,7 @@ class Explorer extends Component {
   _searchData(value) {
     this.extendState({
       search: value,
+      showFilters: false,
       pagination: false,
       resource: false
     })
@@ -404,29 +454,10 @@ class Explorer extends Component {
     If some of subjects got active, then we will load
     subjects again with new facets.
   */
-  _onTopicsChanged(change) {
-    let facetChange = false
-    each(change.updated, function(val, key){
-      if(key.indexOf('active') > -1) {
-        facetChange = true
-      }
-    })
-
-    if(facetChange) this._applyFacets()
-  }
-
-  /*
-    Called when facets changed.
-    Will change filters and load new subjects facets again.
-  */
-  _applyFacets() {
-    let topics = this.state.topics
-    let filters = this.state.filters
-    let facets = topics.getActive()
-    topics.off(this)
-
+  _onTopicsChanged(topics) {
+    let filters = Object.assign({}, this.state.filters, {topics: topics})
     this.extendState({
-      filters: extend({}, filters, {topics: facets}),
+      filters: filters,
       pagination: false,
       resource: false,
       documentItems: []
@@ -507,9 +538,16 @@ class Explorer extends Component {
   }
 
   _setTotal(total) {
-    this.refs.total.el.setInnerHTML(
-      this.getLabel('total-results') + ': ' + total
-    )
+    if(this.refs.total) {
+      this.refs.total.el.setInnerHTML(
+        this.getLabel('total-results') + ': ' + total
+      )
+    }
+  }
+
+  _toggleNavigation() {
+    const isActive = this.state.showFilters
+    this.extendState({showFilters: !isActive})
   }
 }
 

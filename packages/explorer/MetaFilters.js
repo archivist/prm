@@ -6,49 +6,14 @@ class MetaFilters extends Component {
     this._loadOptionValues()
   }
 
-  didUpdate() {
-    window.multirange.init()
-  }
-
   getInitialState() {
     return {
-      detentionPlaceTypes: [
-        "рабочий лагерь", 
-        "штрафной лагерь", 
-        "концентрационный лагерь",
-        "лагерь смерти",
-        "тюрьма",
-        "частное хозяйство (ферма)",
-        "частный дом (город)"
+      interviewLocation: [],
+      interviewType: [
+        "профессиональное",
+        "волонтерское"
       ],
-      forcedLaborTypes: [
-        "Промышленность и строительство",
-        "↳ Производство и хранение оружия",
-        "↳ Добыча ископаемых",
-        "↳ Железная дорога, транспорт",
-        "↳ Металлургия",
-        "↳ Строительство",
-        "↳ Землеустроительные работы",
-        "↳ Судоверфи",
-        "↳ Авиационная промышленность",
-        "↳ Станкостроение и приборостроение",
-        "↳ Текстильная промышленность",
-        "↳ Пищевая промышленность",
-        "↳ Лесная промышленность",
-        "↳ Химический завод",
-        "Сельское хозяйство",
-        "Частный сектор и сфера услуг"
-      ],
-      project: [],
-      state: [
-        "военнопленный",
-        "ост"
-      ],
-      militaryService: [
-        "да",
-        "нет"
-      ],
-      sex: [
+      respondentSex: [
         "мужчина",
         "женщина"
       ],
@@ -56,10 +21,7 @@ class MetaFilters extends Component {
         'Видео',
         'Аудио'
       ],
-      placeOfBirth: [],
-      yearOfBirth: [],
-      enslavingYear: [],
-      homecomingYear: []
+      yearOfBirth: []
     }
   }
 
@@ -79,44 +41,23 @@ class MetaFilters extends Component {
       )
     }
 
-    let detentionPlaceTypeFilter = this.renderSelectList($$, this.state.detentionPlaceTypes, 'interviewee_detention_place_type', 'detention_place_type', 'array')
-      .ref('detentionPlaceTypeFilter')
-    let forcedLaborTypeFilter = this.renderSelectList($$, this.state.forcedLaborTypes, 'interviewee_forced_labor_type', 'forced_labor_type', 'array')
-      .ref('forcedLaborTypeFilter')
-    let stateFilter = this.renderRadioGroup($$, this.state.state, filters.interviewee_state, 'interviewee_state', 'state-filter')
-      .ref('stateFilter')
-    let militaryServiceFilter = this.renderRadioGroup($$, this.state.militaryService, filters.interviewee_military_service, 'interviewee_military_service', 'military_service-filter')
-      .ref('militaryServiceFilter')
-    let sexFilter = this.renderRadioGroup($$, this.state.sex, filters.interviewee_sex, 'interviewee_sex', 'sex-filter')
+    let interviewLocationFilter = this.renderSelectList($$, this.state.interviewLocation, 'interview_location', 'interview_location-filter')
+      .ref('interviewLocationFilter')
+    let interviewTypeFilter = this.renderRadioGroup($$, this.state.interviewType, filters.interview_type, 'interview_type', 'interview_type-filter')
+        .ref('interviewTypeFilter')
+    let respondentSexFilter = this.renderRadioGroup($$, this.state.respondentSex, filters.respondent_sex, 'respondent_sex', 'respondent_sex-filter')
       .ref('sexFilter')
-    let placeOfBirthFilter = this.renderSelectList($$, this.state.placeOfBirth, 'interviewee_place_of_birth', 'place_of_birth-filter')
-      .ref('placeOfBirthFilter')
-    let yearOfBirthFilter = this.renderSelectList($$, this.state.yearOfBirth, 'interviewee_year_of_birth', 'year_of_birth-filter')
-      .ref('yearOfBirthFilter')
-    let enslavingYearFilter = this.renderSelectList($$, this.state.enslavingYear, 'interviewee_enslaving_year', 'enslaving_year-filter')
-      .ref('enslavingYearFilter')
-    let homecomingYearFilter = this.renderSelectList($$, this.state.homecomingYear, 'interviewee_homecoming_year', 'homecoming_year-filter')
-      .ref('homecomingYearFilter')
-    let interviewDateFilter = this.renderRangeSlider($$, [1988,2011], filters.interview_date, 'interview_date', 'interview_date-filter', 'range')
-      .ref('interviewDateFilter')
-    let recordTypeFilter = this.renderRadioGroup($$, this.state.recordType, filters.record_type, 'record_type', 'record_type-filter')
+    let recordTypeFilter = this.renderRadioGroup($$, this.state.recordType, filters.interview_record_type, 'interview_record_type', 'interview_record_type-filter')
       .ref('recordTypeFilter')
-    let projectFilter = this.renderSelectList($$, this.state.project, 'project', 'project-filter')
-      .ref('projectFilter')
+    let yearOfBirthFilter = this.renderSelectList($$, this.state.yearOfBirth, 'respondent_year_of_birth', 'year_of_birth-filter')
+      .ref('yearOfBirthFilter')
 
     el.append(
-      detentionPlaceTypeFilter,
-      forcedLaborTypeFilter,
-      stateFilter,
-      militaryServiceFilter,
-      sexFilter,
-      placeOfBirthFilter,
-      yearOfBirthFilter,
-      enslavingYearFilter,
-      homecomingYearFilter,
-      interviewDateFilter,
+      interviewLocationFilter,
+      interviewTypeFilter,
+      respondentSexFilter,
       recordTypeFilter,
-      projectFilter
+      yearOfBirthFilter
     )
 
     return el
@@ -149,8 +90,10 @@ class MetaFilters extends Component {
       )
     }
     forEach(options, opt => {
-      let option = $$('option').attr({value: opt.replace('↳ ', '')}).append(opt.replace('↳ ', ''))
-      if(opt.replace('↳ ', '') === filters[id]) option.attr({selected: true})
+      const value = opt.value || opt
+      const label = opt.name || opt
+      let option = $$('option').attr({value: value}).append(label)
+      if(value === filters[id]) option.attr({selected: true})
       selector.append(option)
     })
     el.append(selector)
@@ -192,7 +135,7 @@ class MetaFilters extends Component {
 
   renderRangeSlider($$, range, value, id, placeholder, type) {
     let label = this.getLabel(placeholder)
-    
+
     let rangeValues = value ? value.split(',') : range
     let el = $$('div').addClass('se-filter').append(
       $$('div').addClass('se-label').append(label + ' (' + rangeValues[0] + ' — ' + rangeValues[1] + ')')
@@ -225,11 +168,8 @@ class MetaFilters extends Component {
   _loadOptionValues() {
     let documentClient = this.context.documentClient
     let props = [
-      "interviewee_place_of_birth",
-      "interviewee_year_of_birth",
-      "interviewee_enslaving_year",
-      "interviewee_homecoming_year",
-      "project"
+      "interview_location",
+      "respondent_year_of_birth"
     ]
     documentClient.loadMetaOptionValues(props, (err, res) => {
       if (err) {
@@ -238,11 +178,8 @@ class MetaFilters extends Component {
       }
 
       this.extendState({
-        placeOfBirth: res.interviewee_place_of_birth,
-        yearOfBirth: res.interviewee_year_of_birth,
-        enslavingYear: res.interviewee_enslaving_year,
-        homecomingYear: res.interviewee_homecoming_year,
-        project: res.project
+        interviewLocation: res.interview_location,
+        yearOfBirth: res.respondent_year_of_birth
       })
     })
   }

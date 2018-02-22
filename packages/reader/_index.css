@@ -26,6 +26,11 @@
   min-width: 500px;
 }
 
+.sc-reader .se-context-section .sc-tabbed-pane .se-tabs .se-tab {
+  width: 50%;
+  text-align: center;
+}
+
 .sc-reader .se-context-section .se-toggle-context {
   height: 41px;
   border-bottom: 1px solid var(--border-color);
@@ -41,22 +46,33 @@
   font-weight: 600;
 }
 
-.sc-reader .se-context-section .se-toggle-context .se-toggle-item.se-active {
-  background: #eee;
-  border-bottom: 1px solid #444;
-}
-
 .sc-reader .se-main-section .sc-container-editor > * { margin-bottom: 20px; }
 .sc-reader .sc-toolbar { border-bottom: 1px solid var(--border-color); }
 
-.sm-mobile-layout .sc-reader > .se-mobile-header {
-  height: 100px;
+.sm-mobile-layout .sc-reader > .se-mobile-header > .se-navigation-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 6px 10px;
+  font-size: 40px;
+  border: 1px solid #E0E4E4;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 99;
 }
 
-.sm-mobile-layout .sc-reader > .se-mobile-header > .se-navigation-toggle {
-  float: right;
-  margin: 20px;
-  font-size: 50px;
+.sm-mobile-layout .sc-reader > .se-mobile-header > .se-navigation-toggle.sm-active {
+  color: #4b4b4b;
+  background: #ececec;
+  outline: none;
+  -webkit-box-shadow: inset 0px 0px 4px #ccc;
+  -moz-box-shadow: inset 0px 0px 4px #ccc;
+  box-shadow: inset 0px 0px 4px #ccc;
+  border-left: none;
+}
+
+.sm-mobile-layout .sc-reader .sc-layout {
+  padding-left: 70px;
 }
 
 .sm-mobile-layout .sc-reader > .se-main-section,
@@ -73,7 +89,7 @@
 }
 
 .sm-mobile-layout .sc-reader > .sm-active {
-  height: calc(100% - 100px);
+  height: 100%;
 }
 
 .sm-mobile-layout .sc-reader > .se-context-section > .sc-context-panel {
@@ -82,30 +98,50 @@
 
 .sm-mobile-layout .sc-reader .sc-tabbed-pane {
   background: #fff;
-  height: calc(100% - 100px);
+  height: 100%;
 }
 
 .sm-mobile-layout .sc-reader .se-tabs {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  height: 50px;
+  height: 70px;
 }
 
 .sm-mobile-layout .sc-reader .se-tabs .se-tab {
   flex-grow: 1;
-  height: 50px;
+  height: 70px;
   font-size: 20px;
-  line-height: 50px;
+  line-height: 70px;
   text-align: center;
+  background: #eee;
+  border-bottom: 1px solid #444;
+}
+
+.sm-mobile-layout .sc-reader .se-tabs .se-tab.sm-active {
+  background: none;
+  border: none;
 }
 
 .sm-mobile-layout .sc-tabbed-pane .se-tab-content {
-  top: 50px;
+  top: 70px;
   box-shadow: none;
 }
 
 .sm-mobile-layout .sc-reader .se-context-section {
   border-left: none;
   box-shadow: none;
+  font-size: 2em;
+}
+
+.sm-mobile-layout .sc-reader .sc-media-jumper {
+  left: 10px;
+  width: 60px;
+  height: 60px;
+  visibility: hidden;
+}
+
+.sm-mobile-layout .sc-reader .sc-media-jumper::after {
+  font-size: 50px;
+  visibility: visible;
 }

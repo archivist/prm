@@ -38,6 +38,10 @@
   border-bottom: none;
 }
 
+.sc-documents .se-document-summary > .se-summary {
+  padding: 10px;
+}
+
 .sc-documents .se-document-fragment {
   display: table;
   width: 100%;

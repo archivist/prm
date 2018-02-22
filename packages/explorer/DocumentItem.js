@@ -8,31 +8,30 @@ class DocumentItem extends Component {
     let Grid = this.getComponent('grid')
 
     let item = this.props.item
-    let meta = item.meta
     let index = this.props.index
     let config = this.context.config
-    
+
     let urlHelper = this.context.urlHelper
     let url = urlHelper.openDocument(item.documentId)
     if(this.props.resource) url = urlHelper.openDocument(item.documentId, this.props.resource)
-    if(this.props.topic) url = urlHelper.openDocument(item.documentId, false, this.props.resource)
+    if(this.props.topic) url = urlHelper.openDocument(item.documentId, this.props.resource)
     let title = $$('a')
       .addClass('se-document-title')
       .attr({href: url, target: '_blank'})
       .append(item.title)
 
     // Photo badge
-    let photo = config.mediaServer + '/photos/' + meta.interviewee_photo
-    if(!meta.interviewee_photo) photo = config.protocol + '://' + config.host + ':' + config.port + '/assets/default.png'
+    let photo = config.mediaPath + '/s200/' + item.cover
+    if(!item.cover) photo = config.protocol + '://' + config.host + ':' + config.port + '/assets/default.png'
     let photoEl = $$('div').addClass('se-document-photo')
     photoEl.css({'background-image': 'url(' + photo + ')'})
 
     let el = $$('div').addClass('sc-document-item se-row').append(
-      $$(Grid.Cell, {columns: 2}).addClass('se-photo').append(photoEl),
-      $$(Grid.Cell, {columns: 10}).addClass('se-metadata').append(
+      $$(Grid.Cell, {columns: 3}).addClass('se-photo').append(photoEl),
+      $$(Grid.Cell, {columns: 9}).addClass('se-metadata').append(
         this.renderMetaInfo($$),
         title,
-        meta.short_summary,
+        item.summary,
         this.renderTopicBadges($$)
       )
     )
@@ -66,23 +65,14 @@ class DocumentItem extends Component {
 
   renderMetaInfo($$) {
     let item = this.props.item
-    let meta = item.meta
     let el = $$('div').addClass('se-meta-info')
 
-    if(meta.project_name) {
-      el.append($$('div').addClass('se-project-name').append(meta.project_name))
+    if(item.interview_type) {
+      el.append($$('div').addClass('se-interview-type').append(item.interview_type + ' интервью'))
     }
 
-    if(meta.interview_duration) {
-      el.append($$('div').addClass('se-record-duration').append(meta.interview_duration + ' ' + this.getLabel('min-duration')))
-    }
-
-    if(meta.interview_date) {
-      el.append($$('div').addClass('se-record-date').append(moment(meta.interview_date).format('DD.MM.YYYY')))
-    }
-
-    if(meta.record_type) {
-      el.append($$('div').addClass('se-record-type').append(this.renderIcon($$, meta.record_type)))
+    if(item.location) {
+      el.append($$('div').addClass('se-interview-type').append('место взятия: ' + item.location))
     }
 
     if(item.count) {
@@ -94,23 +84,23 @@ class DocumentItem extends Component {
 
   renderTopicBadges($$) {
     let item = this.props.item
-    let topicsTree = this.props.topics
-    let topics = item.topics
+    let topics = this.props.topics
+    let selected = item.topics
     let urlHelper = this.context.urlHelper
     let el = $$('div').addClass('se-topic-badges')
 
     if(!isEmpty(topics)) {
-      forEach(topics, (counter, topic) => {
-        let url = urlHelper.openDocument(item.documentId, false, topic)
-        let name = topicsTree.get([topic, 'name'])
+      forEach(selected, (counter, topicId) => {
+        let url = urlHelper.openDocument(item.documentId, topicId)
+        let topic = topics.find(t => { return t.entityId === topicId })
         el.append(
           $$('a')
             .addClass('se-topic-badge')
             .attr({href: url, target: '_blank'})
             .append(
               this.renderIcon($$, 'topic-badge'),
-              name + ' (' + counter + ')'
-            ) 
+              topic.name + ' (' + counter + ')'
+            )
         )
       })
     }

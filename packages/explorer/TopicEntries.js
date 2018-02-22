@@ -9,7 +9,7 @@ class TopicEntries extends Component {
     if(entries) {
       el.append($$('div').addClass('se-title').append(this.getLabel('topic-suggestions')))
       forEach(entries, entry => {
-        let name = entry.description || entry.name
+        let name = entry.name
         el.append(
           $$('span').addClass('se-entry')
             .append(name)

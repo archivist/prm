@@ -11,6 +11,12 @@ class PageFilter extends Component {
     })
   }
 
+  didMount() {
+    if(this.props.distinct) {
+      this._fetchDistinctValues()
+    }
+  }
+
   didUpdate(props, state) {
     const filterType = this.props.type
     if(filterType === 'reference' && !isEqual(state.selected, this.state.selected)) {
@@ -34,7 +40,7 @@ class PageFilter extends Component {
   }
 
   _renderDropdown($$) {
-    const options = this.props.options
+    const options = this.props.options || this.state.options || []
     let dropdownFilter = $$('select').addClass('se-dropdown-filter')
       .ref('dropdown')
       .on('change', this._onFilter)
@@ -134,17 +140,24 @@ class PageFilter extends Component {
     const entityIds = this.state.selected || []
     if(entityIds.length > 0) {
       resourceClient.listEntities({entityId: entityIds}, {columns: ['"entityId"', 'name']}, (err, res) => {
-        if (err) {
-          console.error(err)
-        } else {
-          let entities = {}
-          res.records.forEach(item => {
-            entities[item.entityId] = item.name
-          })
-          this.extendState({entities: entities})
-        }
+        if (err) return console.error(err)
+        let entities = {}
+        res.records.forEach(item => {
+          entities[item.entityId] = item.name
+        })
+        this.extendState({entities: entities})
       })
     }
+  }
+
+  _fetchDistinctValues() {
+    const distinct = this.props.distinct
+    const documentClient = this.context.documentClient
+    documentClient.getDistinctValues([distinct], (err, values) => {
+      if (err) return console.error(err)
+      const result = values[distinct]
+      if(result) this.extendState({options: result})
+    })
   }
 
   _onFilter(val) {

@@ -149,17 +149,23 @@ class DocumentsPage extends Component {
     const PageFilter = this.getComponent('page-filter')
     let filtersPanel = $$('div').addClass('se-additional-filters').append(
       $$(PageFilter, {
+        id: 'meta->>interview_type',
+        type: 'dropdown',
+        default: 'select-interview-type',
+        options: ['волонтерское', 'профессиональное']
+      }).ref('typeFilter'),
+      $$(PageFilter, {
         id: 'meta->>respondent_sex',
         type: 'dropdown',
         default: 'select-respondent-sex',
         options: ['мужчина', 'женщина']
       }).ref('respondentSexFilter'),
       $$(PageFilter, {
-        id: 'meta->>interview_type',
+        id: 'meta->>respondent_year_of_birth',
         type: 'dropdown',
-        default: 'select-interview-type',
-        options: ['волонтерское', 'профессиональное']
-      }).ref('typeFilter'),
+        default: 'select-birth-year',
+        distinct: 'respondent_year_of_birth'
+      }).ref('birthYearFilter'),
       $$(PageFilter, {
         id: 'meta->>interview_location',
         type: 'reference',
@@ -308,7 +314,7 @@ class DocumentsPage extends Component {
             $$(Grid.Cell, {columns: 1}).addClass('se-badge').append(documentIcon),
             $$(Grid.Cell, {columns: 5}).addClass('se-title').append(title),
             $$(Grid.Cell, {columns: 3}).append(updatedAt),
-            $$(Grid.Cell, {columns: 2}).append(item.count ? item.count + ' fragments' : item.meta.state),
+            $$(Grid.Cell, {columns: 2}).append(item.count ? item.count + ' fragments' : item.state),
             $$(Grid.Cell, {columns: 1}).addClass('se-additional').append(
               this.renderAdditionalMenu($$, additionalActions)
             ).on('click', function(e) {
@@ -403,7 +409,7 @@ class DocumentsPage extends Component {
     const fileClient = this.context.fileClient
     const items = this.state.items
     const doc = find(items, item => { return item.documentId === id })
-    const files = doc.meta.files
+    const files = doc.files
     fileClient.deleteFiles(files, cb)
   }
 

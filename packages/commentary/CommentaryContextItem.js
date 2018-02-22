@@ -47,21 +47,19 @@ class CommentaryContextItem extends Component {
       .addClass('sc-entity-entry se-commentary')
       .on('click', this.handleClick)
 
+
     let resourceLink = $$('a')
-      .addClass('se-resource-external-link se-commentary-link')
+      .addClass('se-resource-external-link se-resource-link')
       .attr({
         href: urlHelper.openResource(this.props.entityId),
         target: '_blank',
-        title: this.getLabel('commentary-link')
+        title: this.getLabel('resource-link')
       })
-      .append(this.context.iconProvider.renderIcon($$, 'commentary-link'))
-
-    if(node.global) {
-      el.append(resourceLink)
-    }
+      .append(this.context.iconProvider.renderIcon($$, 'resource-link'))
 
     el.append(
       $$('div').addClass('se-title').append(node.name),
+      resourceLink,
       $$('div').addClass('se-description').setInnerHTML(node.description)
     )
 

@@ -55,7 +55,7 @@ MetaNode.define({
   respondent_year_of_birth: {type: 'string', default: '', field: {editor: "input", dataType: "text", description: "Год рождения респондента", group: 'Respondent Data'}},
   respondent_marital_status: {type: 'string', default: '', field: {editor: "text", description: "Семейное положение респондента", group: 'Respondent Data'}},
   respondent_activities: {type: 'string', default: '', field: {editor: "text", description: "Сфера занятости респондента", group: 'Respondent Data'}},
-  respondent_bio: {type: 'string', default: '', field: {editor: "text", description: "Биография респондента", group: 'Respondent Data'}},
+  respondent_bio: {type: 'string', default: '', field: {editor: "multitext", description: "Биография респондента", group: 'Respondent Data'}},
 
   collection: {type: 'string', default: '', field: {editor: "reference", entityType: ["collection"], description: "Укажите коллекцию", group: 'Other'}},
   short_summary: {type: 'string', default: '', field: {editor: "multitext", description: "Введите короткую аннотацию", group: 'Other'}},
@@ -63,7 +63,8 @@ MetaNode.define({
   comment: {type: 'string', default: '', field: {editor: "multitext", description: "Введите комментарий", group: 'Other'}},
   published_on: {type: 'string', default: '', field: {editor: "input", dataType: "date", description: "Дата публикации (yyyy-MM-dd)", group: 'Other'}},
   state: { type: 'string', default: '', field: { editor: "select", description: "Статус документа", options: ['transcripted', 'verified', 'finished', 'published'], group: 'Other'}},
-  files: { type: ['metafile'], default: [] }
+  files: { type: ['metafile'], default: [] },
+  cover: { type: 'string', default: '' }
 })
 
 export default MetaNode

@@ -24,7 +24,7 @@ class Reader extends ProseEditor {
     let entityId = parent.props.entityId
     if(entityId) {
       setTimeout(() => {
-        this._showReferences(entityId, true)
+        this.highlightEntity(entityId)
       }, 10)
     }
     if(parent.props.fragment) {
@@ -62,8 +62,8 @@ class Reader extends ProseEditor {
 
     el.append(
       $$('div').addClass('se-navigation-toggle').append(
-        $$(Icon, {icon: 'fa-bars'}).ref('headerIcon')
-      ).on('click', this._toggleNavigation)
+        $$(Icon, {icon: 'fa-bars'})
+      ).ref('headerToggle').on('click', this._toggleNavigation)
     )
 
     return el
@@ -103,10 +103,10 @@ class Reader extends ProseEditor {
     layout.append(
       $$(Brackets).ref('brackets'),
       $$(TextPropertyEditor, {
-        name: 'title',
-        path: ["meta", "title"],
+        name: 'abstract',
+        path: ["meta", "abstract"],
         disabled: true
-      }).addClass('se-title'),
+      }).addClass('se-abstract'),
       $$(ContainerEditor, {
         disabled: true,
         editorSession: this.editorSession,
@@ -121,6 +121,16 @@ class Reader extends ProseEditor {
 
     contentPanel.append(layout)
     return contentPanel
+  }
+
+  highlightEntity(entityId) {
+    const entity = this._getEntityEntry(entityId)
+    const isContainerReference = entity.entityType === 'topic'
+    if(isContainerReference) {
+      this._showTopics([entityId], true)
+    } else {
+      this._showReferences([entityId], true)
+    }
   }
 
   highlightReferences(entities, containerAnnos) {
@@ -194,7 +204,7 @@ class Reader extends ProseEditor {
     }
   }
 
-  _showTopics(topics) {
+  _showTopics(topics, silent) {
     let editorSession = this.editorSession
     let doc = editorSession.getDocument()
     let entityIndex = doc.getIndex('entities')
@@ -206,6 +216,11 @@ class Reader extends ProseEditor {
     })
     let firstPara = doc.getFirst(paragraphs)
     this.refs.contentPanel.scrollTo(`[data-id="${firstPara}"]`)
+
+    if(!silent) {
+      let urlHelper = this.context.urlHelper
+      urlHelper.focusResource(topics)
+    }
 
     setTimeout(function(){
       this.refs.brackets.highlight(topics)
@@ -224,14 +239,21 @@ class Reader extends ProseEditor {
     if(contextOpen) {
       this.refs.mainSection.addClass('sm-active')
       this.refs.contextSection.removeClass('sm-active')
-      this.refs.headerIcon.removeClass('fa-times')
-      this.refs.headerIcon.addClass('fa-bars')
+      this.refs.headerToggle.removeClass('sm-active')
     } else {
       this.refs.contextSection.addClass('sm-active')
       this.refs.mainSection.removeClass('sm-active')
-      this.refs.headerIcon.removeClass('fa-bars')
-      this.refs.headerIcon.addClass('fa-times')
+      this.refs.headerToggle.addClass('sm-active')
     }
+  }
+
+  _getEntityEntry(entityId) {
+    let editorSession = this.editorSession
+    let resources = editorSession.resources
+
+    return resources.find(r => {
+      return r.entityId === entityId
+    })
   }
 }
 

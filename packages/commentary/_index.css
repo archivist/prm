@@ -1,28 +1,28 @@
 .sc-commentary {
-  background: rgba(147, 217, 11, 0.1);
-  border-bottom: 1px solid rgba(147, 217, 11, 0.3);
+  background: rgba(217, 144, 11, 0.1);
+  border-bottom: 1px solid rgba(147, 11, 217, 0.3);
   cursor: pointer;
   padding: 0px 1px;
   color: inherit;
 }
 
 .sc-text-property .sc-commentary.sm-highlighted {
-  background: rgba(147, 217, 11, 0.4);
-  border-bottom: 1px solid rgba(147, 217, 11, 0.7);
+  background: rgba(147, 11, 217, 0.4);
+  border-bottom: 1px solid rgba(147, 11, 217, 0.7);
 }
 
 .sc-scrollbar .se-highlight.sm-commentary {
-  background-color: rgb(147, 217, 11);
+  background-color: rgb(147, 11, 217);
 }
 
 .se-entity-entries .sc-entity-entry.se-commentary.se-active,
 .se-entity-entries .sc-entity-entry.se-commentary.se-active:hover {
-  border-left: 2px solid rgb(147, 217, 11);
+  border-left: 2px solid rgb(147, 11, 217);
 }
 
 .se-entity-entries .sc-entity-entry.se-commentary.se-focused,
 .se-entity-entries .sc-entity-entry.se-commentary:hover {
-  border-left: 2px solid rgba(147, 217, 11, 0.3);
+  border-left: 2px solid rgba(147, 11, 217, 0.3);
 }
 
 .se-entity-entries .sc-entity-entry.se-commentary .se-title {
@@ -31,12 +31,16 @@
 }
 
 .se-entity-entries .sc-entity-entry.se-commentary .se-description {
-  margin-right: 0px;
+  margin-right: 60px;
+}
+
+.sc-entity-entry.se-commentary .se-resource-link {
+  right: 20px;
 }
 
 .se-entity-entries .sc-entity-entry.se-commentary .se-type,
 .se-reference-item.se-commentary .se-type {
-  background: rgba(147, 217, 11, 0.7);
+  background: rgba(147, 11, 217, 0.7);
 }
 
 .sc-entity-entry.se-commentary .se-commentary-link {
@@ -45,6 +49,5 @@
 
 .sc-reader .se-entity-entries .sc-entity-entry.se-commentary.se-active,
 .sc-reader .se-entity-entries .sc-entity-entry.se-commentary.se-active:hover {
-  border-left: 2px solid rgba(147, 217, 11, 0.7);
-  background: rgba(147, 217, 11, 0.05);
+  border-left: 2px solid rgba(147, 11, 217, 0.7);
 }

@@ -82,6 +82,8 @@ class SourcePlayerOverlay extends Component {
       )
 
       el.append(player)
+    } else {
+      el.addClass('sm-empty')
     }
 
     return el

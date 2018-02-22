@@ -1,20 +1,24 @@
 .sc-resources {
-  height: auto;
-  overflow-y: auto;
+  flex-grow: 1;
+  height: calc(100vh - 100px);
+  overflow: auto;
+  padding: 10px;
   border: 1px solid #E0E4E4;
   border-radius: 3px;
-  padding: 0px 20px;
-  margin-bottom: 10px;
 }
 
 .sc-resources .se-resource {
   padding: 10px 0px;
 }
 
-.sc-explorer .sc-resources .sc-grid {
+.sc-explorer .se-results-pane .sc-resources > .sc-grid {
+  padding-bottom: 10px;
   border: none;
   padding: 0px;
-  margin: 0px;
+  margin-bottom: 10px;
+  flex-grow: 1;
+  height: 100%;
+  overflow: initial;
 }
 
 .sc-resources .se-resource .se-title {

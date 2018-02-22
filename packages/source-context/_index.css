@@ -1,12 +1,15 @@
 .sc-context-source {
-  top: 300px;
   position: absolute;
-  margin: 0 20px;
-  padding: 20px 0;
+  top: 300px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  overflow: auto;
+  padding: 20px;
   border-top: 1px solid #e5e5e5;
 }
 
-.sc-context-source .se-technical-info {
+.sc-context-source > div {
   font-size: 13px;
   line-height: 25px;
   padding-bottom: 20px;
@@ -14,20 +17,40 @@
   white-space: pre-wrap;
 }
 
-.sc-context-source .se-technical-info .se-meta-prop {
+.sc-context-source > .se-section-title {
+  padding: 0px;
+  font-size: 17px;
+  text-align: center;
+}
+
+.sc-context-source > .se-section {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.sc-context-source .se-meta-prop {
+  display: flex;
   margin-bottom: 10px;
   line-height: 20px;
   font-size: 13px;
 }
 
-.sc-context-source .se-technical-info .se-meta-prop .se-meta-label {
-  float: left;
-  width: 130px;
+.sc-context-source .se-meta-prop .se-meta-label {
+  flex: 0 0 130px;
   color: #757575;
 }
 
-.sc-context-source .se-technical-info .se-meta-prop .se-meta-value {
-  margin-left: 160px;
+.sc-context-source .se-meta-prop .se-meta-value {
+  flex-grow: 1;
+}
+
+.sc-context-source .se-cover img {
+  width: 100%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.sc-context-source .se-meta-prop .se-meta-value .se-topic:not(:empty) ~ .se-topic:not(:empty):before {
+  content: ", ";
+  color: initial;
 }
 
 .sc-overlay-player {
@@ -38,21 +61,31 @@
   padding: 20px;
 }
 
+.sc-overlay-player.sm-empty {
+  display: none;
+}
+
 .sm-mobile-layout .sc-context-source {
   width: 100%;
   margin: 0px;
   padding: 20px;
 }
 
-.sm-mobile-layout .sc-context-source .se-technical-info {
-  text-align: center;
+.sm-mobile-layout .sc-overlay-player {
+  width: 100%;
+  z-index: 99;
+  top: 70px;
 }
 
-.sm-mobile-layout .sc-context-source .se-technical-info .se-meta-prop {
-  font-size: 2em;
-  margin-bottom: 2em;
+.sm-mobile-layout .sc-context-source .se-meta-prop {
+  display: block;
+  margin-bottom: 10px;
 }
 
 .sm-mobile-layout .sc-context-source .se-technical-info .se-meta-prop .se-meta-label {
   width: 30%;
+}
+
+.sm-mobile-layout .sc-reader .sc-brackets .se-bracket.sm-active {
+  border-right: 5px;
 }

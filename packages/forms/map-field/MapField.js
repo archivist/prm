@@ -32,13 +32,13 @@ class MapField extends Component {
     let map = $$('div').addClass('se-map')
         .attr({id: 'map'})
         .ref('map')
-    
+
     el.append(
       map,
       $$('div').attr({id: 'geocode-selector'}),
       $$('div').addClass('help').append(config.placeholder)
     )
-    
+
     return el
   }
 
@@ -46,7 +46,7 @@ class MapField extends Component {
     // TODO: fix array reverse bug, sometimes coordinates got reversed on map update
     if(value) {
       if(value.length > 0) {
-        this.map.setView(value.reverse(), this.state.defaultZoom)
+        this.map.setView({lat: value[0], lng: value[1]}, this.state.defaultZoom)
         this.control._geocodeMarker = L.marker(value).addTo(this.map)
       }
     }
@@ -54,7 +54,7 @@ class MapField extends Component {
 
   getValue() {
     let latlng = this.control._geocodeMarker.getLatLng()
-    return [latlng.lng, latlng.lat]
+    return [latlng.lat, latlng.lng]
   }
 
   geocode(value) {

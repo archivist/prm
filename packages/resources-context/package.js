@@ -4,12 +4,24 @@ export default {
   name: 'archivist-reader-resources',
   configure: function(config) {
     config.addContext('resources', ResourcesContext, false)
-    config.addIcon('resources', {'fontawesome': 'fa-book'})
+    config.addIcon('resources', {'fontawesome': 'fa-comments'})
     config.addIcon('map-link', {'fontawesome': 'fa-crosshairs'})
-    config.addIcon('person-link', {'fontawesome': 'fa-address-book'})
+    config.addIcon('resource-link', {'fontawesome': 'fa-book'})
     config.addLabel('resources', {
-      en: 'Resources',
-      ru: 'Указатель'
+      en: 'Commentary',
+      ru: 'Комментарий'
+    })
+    config.addLabel('topic-resources', {
+      en: 'Contents',
+      ru: 'Содержание'
+    })
+    config.addLabel('geofeature-resources', {
+      en: 'Geofeatures',
+      ru: 'Упоминаемые места'
+    })
+    config.addLabel('commentary-resources', {
+      en: 'Commentary',
+      ru: 'Упоминаемые лица и события'
     })
     config.addLabel('resource-link', {
       en: 'Find in other documents',

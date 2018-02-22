@@ -4,7 +4,7 @@
   line-height: 24px;
 }
 
-.se-tree-node {
+.sc-context-topics .se-content .se-tree-node {
   display: block;
   position: relative;
   min-height: 1em;
@@ -16,18 +16,22 @@
   color: rgba(0,0,0,0.75);
 }
 
-.se-tree-node.sm-active {
-  border-left: 2px solid rgba(147, 217, 11, 0.7);
-  background: rgba(147, 217, 11, 0.05);
-  color: rgba(0,0,0,0.75);
+.sc-context-topics .se-content .se-tree-node.sm-active {
+  color: #4b4b4b;
+  background: #ececec;
+  outline: none;
+  -webkit-box-shadow: inset 0px 0px 4px #ccc;
+  -moz-box-shadow: inset 0px 0px 4px #ccc;
+  box-shadow: inset 0px 0px 4px #ccc;
+  border-left: none;
 }
 
-.se-tree-node:hover {
+.sc-context-topics .se-content .se-tree-node:hover {
   color: rgba(0,0,0,0.75);
   cursor: pointer;
 }
 
-.sm-mobile-layout .se-tree-node {
+.sm-mobile-layout .sc-context-topics .se-content .se-tree-node {
   font-size: 3em;
   text-align: center;
 }

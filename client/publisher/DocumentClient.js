@@ -81,6 +81,11 @@ class ArchivistDocumentClient extends DocumentClient {
     let optionsRequest = encodeURIComponent(JSON.stringify(options))
     request('GET', '/api/documents/' + documentId + '/search?query=' + query + '&language=' + language + '&filters=' + filtersRequest + '&options=' + optionsRequest, null, cb)
   }
+
+  getDistinctValues(options, cb) {
+    let optionsRequest = encodeURIComponent(JSON.stringify(options))
+    request('GET', '/api/documents/options/values?props=' + optionsRequest, null, cb)
+  }
 }
 
 function isJson(str) {

@@ -20,8 +20,9 @@ class PrmPublisherContext extends PublisherContext {
   getDefaultContext() {
     const role = this._getUserRole()
     if(role !== 'respondent') {
-      let configurator = this.props.configurator
-      return configurator.getDefaultContext()
+      // let configurator = this.props.configurator
+      // return configurator.getDefaultContext()
+      return 'metadata'
     } else {
       return 'comments'
     }

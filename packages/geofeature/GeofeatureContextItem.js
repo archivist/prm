@@ -59,7 +59,7 @@ class GeofeatureContextItem extends Component {
         target: '_blank',
         title: this.getLabel('resource-link')
       })
-      .append(this.context.iconProvider.renderIcon($$, 'resources'))
+      .append(this.context.iconProvider.renderIcon($$, 'resource-link'))
 
     let mapLink = $$('a')
       .addClass('se-resource-external-link se-map-link')

@@ -2,12 +2,10 @@ import { Component } from 'substance'
 import { filter, find, forEach, orderBy } from 'lodash-es'
 
 class ResourcesContext extends Component {
-
   constructor(...args) {
     super(...args)
 
     this.handleActions({
-      'switchTab': this._switchTab,
       'switchActive': this._switchActive
     })
   }
@@ -30,21 +28,12 @@ class ResourcesContext extends Component {
     }
   }
 
-  getInitialState() {
-    let configurator = this.props.configurator
-    let contexts = configurator.getResourceTypes()
-
-    return {
-      contextId: contexts[0].id
-    }
-  }
-
   getEntry(entityId) {
     let editorSession = this.context.editorSession
     let resources = editorSession.resources
 
-    return find(resources, function(r) { 
-      return r.entityId === entityId 
+    return find(resources, function(r) {
+      return r.entityId === entityId
     })
   }
 
@@ -53,7 +42,7 @@ class ResourcesContext extends Component {
     let resources = editorSession.resources
     let entries = filter(resources, {entityType: entityType})
     let orderedEntries = orderBy(entries, 'name', 'asc');
-    
+
     return orderedEntries
   }
 
@@ -62,22 +51,16 @@ class ResourcesContext extends Component {
     return configurator.getContextItem(entityType)
   }
 
-  renderContext($$, resourceType) {
-    let ScrollPane = this.getComponent('scroll-pane')
+  renderEntityContext($$, resourceType) {
     let entityId = this.state.entityId
 
     let entityEntries = $$("div")
       .addClass("se-entity-entries")
-      .ref('entityEntries')
 
     let entries = this.getEntries(resourceType)
 
     for (let i = 0; i < entries.length; i++) {
       let entry = entries[i]
-
-      if(entry.entityId === entityId) {
-        entry.active = true
-      }
 
       let EntityComp = this.getEntityRender(entry.entityType)
       let item = $$(EntityComp, entry).ref(entry.entityId)
@@ -89,37 +72,66 @@ class ResourcesContext extends Component {
       entityEntries.append(item)
     }
 
-    let el = $$('div').addClass('sc-entity-panel').append(
-      $$(ScrollPane).ref('panelEl').append(
-        entityEntries
-      )
-    )
+    return entityEntries
+  }
 
-    return el
+  renderTopics($$) {
+    const doc = this.context.doc
+    const editorSession = this.context.editorSession
+    const resources = editorSession.resources
+    const topics = filter(resources, {entityType: 'topic'})
+
+    const topicIndex = doc.getIndex('type').get('topic')
+    let activeTopics = []
+    forEach(topicIndex, ref => {
+      activeTopics = activeTopics.concat(ref.reference)
+    })
+    let activeNodes = []
+    filter(topics, topic => {
+      if(activeTopics.indexOf(topic.entityId) > -1) activeNodes.push(topic)
+    })
+    let topicsPanel = $$('div').addClass('se-topic-entries')
+
+    if(activeNodes) {
+      activeNodes.forEach(topic => {
+        let item = $$('div').addClass('se-tree-node')
+          .attr("data-id", topic.entityId)
+          .append(topic.name)
+          .ref(topic.entityId)
+          .on('click', this.highlightTopicNodes.bind(this, topic.entityId))
+
+        if(this.state.entityId === topic.entityId) {
+          item.addClass('sm-active')
+        }
+
+        topicsPanel.append(item)
+      })
+    }
+
+    return topicsPanel
   }
 
   render($$) {
     let configurator = this.props.configurator
     let contexts = configurator.getResourceTypes()
-    let TabbedContext = this.getComponent('tabbed-context')
-    let el = $$('div').addClass('sc-context-panel')
-    let currentContextId = this.state.contextId
-    let tabs = []
-
-    forEach(contexts, function(context) {
-      tabs.push({id: context.id, name: context.name})
-    })
-
-    el.append(
-      $$(TabbedContext, {
-        tabs: tabs,
-        activeTab: currentContextId
-      }).ref('tabbedPane').append(
-        this.renderContext($$, currentContextId)
-      )
+    let ScrollPane = this.getComponent('scroll-pane')
+    let entityPanel = $$('div').addClass('sc-entity-panel').append(
+      $$('div').addClass('se-title').append(this.getLabel('topic-resources')),
+      this.renderTopics($$)
     )
 
-    return el
+    contexts.forEach(context => {
+      entityPanel.append(
+        $$('div').addClass('se-title').append(this.getLabel(context.name)),
+        this.renderEntityContext($$, context.id)
+      )
+    })
+
+    return $$('div').addClass('sc-context-panel').append(
+      $$(ScrollPane).ref('panelEl').append(
+        entityPanel
+      )
+    )
   }
 
   focusResource(entityId) {
@@ -133,6 +145,11 @@ class ResourcesContext extends Component {
     }
   }
 
+  highlightTopicNodes(activeNode) {
+    this.send('showTopics', [activeNode])
+    this._switchActive('topic', activeNode)
+  }
+
   _switchActive(entityType, entityId) {
     this.setState({
       contextId: entityType,
@@ -140,13 +157,6 @@ class ResourcesContext extends Component {
       noScroll: true
     })
   }
-
-  _switchTab(contextId) {
-    this.setState({
-      contextId: contextId
-    })
-  }
-
 }
 
 export default ResourcesContext

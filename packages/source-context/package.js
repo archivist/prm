@@ -6,38 +6,86 @@ export default {
   configure: function(config) {
     config.addContext('source', SourceContext, true)
     config.addComponent('source-player', SourcePlayerOverlay)
-    config.addIcon('source', {'fontawesome': 'fa-youtube-play'})
+    config.addIcon('source', {'fontawesome': 'fa-info'})
     config.addLabel('source', {
+      en: 'Information',
+      ru: 'Информация'
+    })
+    config.addLabel('meta-title', {
+      en: 'Respondent',
+      ru: 'Респондент'
+    })
+    config.addLabel('meta-short_summary', {
+      en: 'Summary',
+      ru: 'Описание'
+    })
+    config.addLabel('meta-interview_location', {
+      en: 'Interview Location',
+      ru: 'Место записи'
+    })
+    config.addLabel('meta-respondent_year_of_birth', {
+      en: 'Date of Birth',
+      ru: 'Дата рождения'
+    })
+    config.addLabel('meta-respondent_bio', {
+      en: 'Biography',
+      ru: 'Биография'
+    })
+    config.addLabel('meta-interview_record_type', {
       en: 'Source',
       ru: 'Источник'
     })
-    config.addLabel('tech-project_name', {
-      en: 'Project name',
-      ru: 'Название проекта'
+    config.addLabel('meta-interview_duration', {
+      en: 'Duration',
+      ru: 'Длительность'
     })
-    config.addLabel('tech-interviewee', {
-      en: 'Interviewee',
-      ru: 'Респондент'
+    config.addLabel('meta-interview_type', {
+      en: 'Interview Type',
+      ru: 'Тип интервью'
     })
-    config.addLabel('tech-conductor', {
-      en: 'Interview conductor',
+    config.addLabel('meta-interview_date', {
+      en: 'Interview Date',
+      ru: 'Дата взятия'
+    })
+    config.addLabel('meta-interview_conductor', {
+      en: 'Interview Conductor',
       ru: 'Интервьюер'
     })
-    config.addLabel('tech-operator', {
-      en: 'Operator',
-      ru: 'Оператор'
+    config.addLabel('meta-interview_persons_present', {
+      en: 'Persons Present',
+      ru: 'Присутствующие лица'
     })
-    config.addLabel('tech-sound_operator', {
-      en: 'Sound operator',
-      ru: 'Звуковой оператор'
+    config.addLabel('meta-interview_transcriber', {
+      en: 'Transcriber',
+      ru: 'Расшифровщик'
     })
-    config.addLabel('tech-interview_location', {
-      en: 'Interview location',
-      ru: 'Место интервью'
+    config.addLabel('meta-comment', {
+      en: 'Comment',
+      ru: 'Комментарий'
     })
-    config.addLabel('tech-interview_date', {
-      en: 'Interview date',
-      ru: 'Дата'
+    config.addLabel('meta-topics', {
+      en: 'Topics',
+      ru: 'Темы'
+    })
+    config.addLabel('meta-respondent-data', {
+      en: 'Respondent Data',
+      ru: 'Данные респондента'
+    })
+    config.addLabel('meta-interview-data', {
+      en: 'Interview Data',
+      ru: 'Данные интервью'
+    })
+    config.addLabel('meta-source-video', {
+      en: 'Video',
+      ru: 'Видео'
+    })
+    config.addLabel('meta-source-audio', {
+      en: 'Audio',
+      ru: 'Аудио'
+    })
+    config.addLabel('meta-source-text', {
+      en: 'Text',
+      ru: 'Текст'
     })
   }
 }

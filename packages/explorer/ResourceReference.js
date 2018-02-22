@@ -9,7 +9,7 @@ class ResourceReference extends Component {
       'loadResourceFragments': this._loadResourceFragments
     })
   }
-  
+
   didMount() {
     this._loadResourceData()
     this._loadResourceDocuments()
@@ -32,55 +32,10 @@ class ResourceReference extends Component {
     if(resource) {
       let title = resource.name
 
-      if(resource.entityType === 'toponym') {
-        title = resource.name.toLowerCase() === 'неизвестно' ? this.getLabel('unknown-name') : resource.name
-        let location = resource.data.country
-        if(resource.name !== resource.data.currentName && resource.data.currentName) {
-          location += ", " + resource.data.currentName
-        }
-        el.append(
-          $$('a').addClass('se-location')
-            .attr({
-              target: '_blank',
-              href: '/maps/' + this.props.resource
-            })
-            .append(
-              location,
-              this.context.iconProvider.renderIcon($$, 'location')
-            )
-        )
-      } else if (resource.entityType === 'prison') {
-        let location = resource.data.country
-        if(resource.data.nearestLocality) {
-          location += ", " + resource.data.nearestLocality
-        }
-
-        let prisonType = resource.data.prisonType ? resource.data.prisonType.join(', ') : ''
-
-        el.append(
-          $$('div').addClass('se-prison-type').append(prisonType),
-          $$('a').addClass('se-location')
-            .attr({
-              target: '_blank',
-              href: '/maps/' + this.props.resource
-            })
-            .append(
-              location,
-              this.context.iconProvider.renderIcon($$, 'location')
-            )
-        )
-      }
-
-      if(resource.entityType === 'subject') {
-        el.append(
-          $$('div').addClass('se-title').setInnerHTML(resource.description || title)
-        )
-      } else {
-        el.append(
-          $$('div').addClass('se-title').setInnerHTML(title),
-          $$('div').addClass('se-description').setInnerHTML(resource.description)
-        )
-      }
+      el.append(
+        $$('div').addClass('se-title').setInnerHTML(title),
+        $$('div').addClass('se-description').setInnerHTML(resource.description)
+      )
     }
 
     return el
@@ -90,9 +45,17 @@ class ResourceReference extends Component {
     let Grid = this.getComponent('grid')
     let items = this.state.documents
     let resource = this.state.resource
-    let isTopic = resource ? resource.entityType === 'subject' : false
+    let isTopic = resource ? resource.entityType === 'topic' : false
     let DocumentItem = this.getComponent('document-item')
     let grid = $$(Grid)
+
+    if(items && this.props.mobile) {
+      grid.append(
+        $$('div').addClass('se-total').append(
+          this.getLabel('total-results') + ': ' + items.length
+        ).ref('total')
+      )
+    }
 
     if(items) {
       items.forEach((item, index) => {
@@ -165,7 +128,7 @@ class ResourceReference extends Component {
 
         this.extendState({
           documents: items,
-          details: index 
+          details: index
         })
       }.bind(this))
     } else {

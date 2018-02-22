@@ -13,34 +13,7 @@ let Where = require(massivePath + '/../lib/where')
 
 class ResourceEngine extends ArchivistResourceEngine {
 
-  getResourcesTree(entityType) {
-    let query = `
-      SELECT "entityId", "name", data->'parent' AS parent, data->'position' AS position
-      FROM entities
-      WHERE "entityType" = $1
-      ORDER BY cast(data->>'position' as integer) ASC
-    `
-
-    return new Promise((resolve, reject) => {
-      this.db.run(query, [entityType], (err, entities) => {
-        if (err) {
-          return reject(new Err('ResourceEngine.GetResourcesTree', {
-            cause: err
-          }))
-        }
-
-        resolve(entities)
-      })
-    })
-  }
-
-  updateResourcesTree(data) {
-    return Promise.map(data, entity => {
-      return this.updateEntity(entity.entityId, entity)
-    })
-  }
-
-  getResourcesTreeFacets(filters, entityType) {
+  getResourcesFacets(filters, entityType) {
     if(filters.topics) {
       filters['"references" ?&'] = filters.topics
       delete filters.topics
@@ -64,14 +37,14 @@ class ResourceEngine extends ArchivistResourceEngine {
     }
 
     let query = `
-      SELECT "entityId", entities.name, cnt, entities.data->'parent' AS parent, entities.data->'position' AS pos FROM (
+      SELECT "entityId", entities.name, cnt FROM (
         SELECT DISTINCT
           jsonb_object_keys(documents.references) AS anno,
           COUNT(*) OVER (PARTITION BY jsonb_object_keys(documents.references)) cnt
         FROM documents ${whereQuery}
       ) AS docs INNER JOIN entities ON (docs.anno = entities."entityId")
       WHERE "entityType" = '${entityType}'
-      ORDER BY pos ASC
+      ORDER BY entities.name ASC
     `
 
     return new Promise((resolve, reject) => {

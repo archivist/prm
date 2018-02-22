@@ -86,53 +86,25 @@ export default {
       en: 'Filters',
       ru: 'Фильтры'
     })
-    config.addLabel('detention_place_type', {
-      en: 'Detention place type',
-      ru: 'Тип места заключения/работы'
+    config.addLabel('interview_location-filter', {
+      en: 'Interview location',
+      ru: 'Место взятия интервью'
     })
-    config.addLabel('forced_labor_type', {
-      en: 'Forced labor type',
-      ru: 'Тип работы'
+    config.addLabel('interview_type-filter', {
+      en: 'Interview type',
+      ru: 'Тип интервью'
     })
-    config.addLabel('state-filter', {
-      en: 'Interviewee state',
-      ru: 'Статус'
-    })
-    config.addLabel('military_service-filter', {
-      en: 'Military service in soviet army',
-      ru: 'Служба в советской армии'
-    })
-    config.addLabel('sex-filter', {
-      en: 'Sex',
-      ru: 'Пол'
-    })
-    config.addLabel('place_of_birth-filter', {
-      en: 'Place of birth',
-      ru: 'Место рождения'
+    config.addLabel('respondent_sex-filter', {
+      en: 'Respondent Sex',
+      ru: 'Пол респондента'
     })
     config.addLabel('year_of_birth-filter', {
       en: 'Year of birth',
-      ru: 'Год рождения'
+      ru: 'Год рождения респондента'
     })
-    config.addLabel('enslaving_year-filter', {
-      en: 'Enslaving year',
-      ru: 'Год угона'
-    })
-    config.addLabel('homecoming_year-filter', {
-      en: 'Homecoming year',
-      ru: 'Год возвращения домой'
-    })
-    config.addLabel('interview_date-filter', {
-      en: 'Interview years',
-      ru: 'Годы взятия интервью'
-    })
-    config.addLabel('record_type-filter', {
+    config.addLabel('interview_record_type-filter', {
       en: 'Record type',
       ru: 'Источник записи'
-    })
-    config.addLabel('project-filter', {
-      en: 'Project',
-      ru: 'Проект'
     })
   }
 }

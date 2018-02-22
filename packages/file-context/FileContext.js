@@ -53,7 +53,6 @@ class FileContext extends Component {
   }
 
   render($$) {
-    const files = this._getFileList()
     let dropArea = $$('div').addClass('se-droparea dropzone')
       .ref('files')
     let filePanel = $$(ScrollPane).ref('panelEl').append(
@@ -94,6 +93,7 @@ class FileContext extends Component {
       let file = tx.create({id: fileName, type: 'metafile', file: fileName})
       files.push(file.id)
       tx.set(['meta', 'files'], files)
+      this._recomputeCoverNode(tx)
     })
   }
 
@@ -101,6 +101,7 @@ class FileContext extends Component {
     let editorSession = this.context.editorSession
     editorSession.transaction((tx) => {
       tx.set([fileId, prop], value)
+      this._recomputeCoverNode(tx)
     })
   }
 
@@ -116,6 +117,7 @@ class FileContext extends Component {
         files.splice(filesIndex, 1)
         tx.delete(fileId)
         tx.set(['meta', 'files'], files)
+        this._recomputeCoverNode(tx)
       })
       this.rerender()
     })
@@ -124,6 +126,15 @@ class FileContext extends Component {
   _removeFile(name, cb) {
     let fileClient = this.context.fileClient
     fileClient.deleteFile(name, cb)
+  }
+
+  _recomputeCoverNode(tx) {
+    const files = tx.get(['meta', 'files'])
+    const cover = files.find(file => {
+      const fileNode = tx.get(file)
+      return fileNode.fileType === 'main-image'
+    })
+    tx.set(['meta', 'cover'], cover)
   }
 }
 

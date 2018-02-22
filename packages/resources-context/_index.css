@@ -1,4 +1,12 @@
-.se-entity-entries .sc-entity-entry {
+.sc-entity-panel > .se-title {
+  padding: 10px 15px;
+  font-weight: 500;
+  border-bottom: 1px solid #e9e9e9;
+  background: #fff;
+}
+
+.se-entity-entries .sc-entity-entry,
+.se-topic-entries .se-tree-node {
   position: relative;
   min-height: 100px;
   padding: 20px;
@@ -7,7 +15,8 @@
   cursor: pointer;
 }
 
-.se-entity-entries .sc-entity-entry.se-active {
+.se-entity-entries .sc-entity-entry.se-active,
+.se-topic-entries .se-tree-node.sm-active {
   background: white;
   border-left: 2px solid #0b9dd9;
 }
@@ -31,19 +40,53 @@
   color: #999;
 }
 
+.se-topic-entries .se-tree-node {
+  min-height: 60px;
+}
+
+.se-topic-entries .se-tree-node.sm-active {
+  border-left: 2px solid rgb(145, 187, 4);
+}
+
+.se-topic-entries .se-tree-node:hover {
+  color: rgba(0,0,0,0.75);
+  cursor: pointer;
+}
+
+.sm-mobile-layout .sc-reader .sc-context-resources .se-tree-node {
+  text-align: center;
+}
+
 .sm-mobile-layout .sc-reader .sc-context-resources .se-tabs,
 .sm-mobile-layout .sc-reader .sc-context-resources .se-tabs .se-tab {
   height: 60px;
 }
 
 .sm-mobile-layout .se-entity-entries .sc-entity-entry {
-  font-size: 2em;
 }
 
 .sm-mobile-layout .se-entity-entries .sc-entity-entry .se-title {
-  font-size: 1.5em;
 }
 
 .sm-mobile-layout .se-entity-entries .sc-entity-entry .se-description {
-  font-size: 1em;
+}
+
+.sm-mobile-layout .se-entity-entries .sc-entity-entry a {
+  display: none;
+}
+
+.sm-mobile-layout .se-entity-entries .sc-entity-entry.se-active,
+.sm-mobile-layout .se-topic-entries .se-tree-node.sm-active {
+  color: #4b4b4b;
+  background: #ececec;
+  outline: none;
+  -webkit-box-shadow: inset 0px 0px 4px #ccc;
+  -moz-box-shadow: inset 0px 0px 4px #ccc;
+  box-shadow: inset 0px 0px 4px #ccc;
+  border-left: none;
+}
+
+.sm-mobile-layout .sc-context-source .se-meta-prop.se-meta-topics .se-meta-value {
+  font-size: 3em;
+  line-height: 1em;
 }

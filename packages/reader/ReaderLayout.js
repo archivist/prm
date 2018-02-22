@@ -40,6 +40,12 @@ class ReaderLayout extends Component {
         this.refs.reader.highlightReferences([newProps.entityId])
       }, 10)
     }
+
+    if(this.props.mobile && newProps.time && this.refs.reader) {
+      setTimeout(() => {
+        this.refs.reader._toggleNavigation()
+      }, 10)
+    }
   }
 
   _updateLayout() {
@@ -106,7 +112,8 @@ class ReaderLayout extends Component {
       window.session = session
 
       series([
-        this._loadResources(documentId, session)
+        this._loadResources(documentId, session),
+        this._loadLocation(session)
       ], () => {
         this.setState({
           session: session
@@ -130,6 +137,20 @@ class ReaderLayout extends Component {
   _loadDocumentResources(documentId, cb) {
     let resourceClient = this.context.resourceClient
     resourceClient.getDocumentResources(documentId, cb)
+  }
+
+  _loadLocation(session) {
+    return function(cb) {
+      const doc = session.getDocument()
+      const meta = doc.getDocumentMeta()
+      const locationId = meta.interview_location
+      const resourceClient = this.context.resourceClient
+      if(!locationId) return cb()
+      resourceClient.getEntity(locationId, (err, location) => {
+        session.location = location
+        cb()
+      })
+    }.bind(this)
   }
 
   _onError(err) {

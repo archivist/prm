@@ -13,9 +13,7 @@ class ResourceServer extends ArchivistResourceServer {
     app.get(this.path + '/entities/persons', this._getPersonsList.bind(this))
     super.bind(app)
     app.get(this.path + '/entities/persons/stats', this._getPersonsStats.bind(this))
-    app.post(this.path + '/entities/tree/update', this.authEngine.hasAccess.bind(this.authEngine), this._updateResourcesTree.bind(this))
-    app.get(this.path + '/entities/tree/:type', this._getResourcesTree.bind(this))
-    app.get(this.path + '/entities/facets/:type', this._getResourcesFacetsTree.bind(this))
+    app.get(this.path + '/entities/facets/:type', this._getResourcesFacets.bind(this))
   }
 
   /*
@@ -34,31 +32,16 @@ class ResourceServer extends ArchivistResourceServer {
   }
 
   /*
-    Massive update tree leaves
-  */
-  _updateResourcesTree(req, res, next) {
-    let updated = req.body
-
-    this.engine.updateResourcesTree(updated)
-      .then(function() {
-        res.send(200)
-      })
-      .catch(function(err) {
-        next(err)
-      })
-  }
-
-  /*
     Get resources tree facets data for given entity type
   */
-  _getResourcesFacetsTree(req, res, next) {
+  _getResourcesFacets(req, res, next) {
     let type = req.params.type
     let filters = req.query.filters
     filters = filters ? JSON.parse(filters) : {}
 
     ///refs = refs ? JSON.parse(refs) : []
 
-    this.engine.getResourcesTreeFacets(filters, type)
+    this.engine.getResourcesFacets(filters, type)
       .then(function(entities) {
         res.json(entities)
       })

@@ -17,18 +17,11 @@ class ResourceClient {
   }
 
   /*
-    Get subjects data
+    Get topics facets data
   */
-  getSubjects(cb) {
-    request('GET', '/api/entities/tree/subject', null, cb)
-  }
-
-  /*
-    Get subjects facets data
-  */
-  getSubjectsFacets(filters, cb) {
+  getTopicsFacets(filters, cb) {
     let filtersRequest = encodeURIComponent(JSON.stringify(filters))
-    request('GET', '/api/entities/facets/subject?filters=' + filtersRequest , null, cb)
+    request('GET', '/api/entities/facets/topic?filters=' + filtersRequest , null, cb)
   }
 
   /*
@@ -60,14 +53,14 @@ class ResourceClient {
     Get top entity results for search query
   */
   searchTopResources(query, language, cb) {
-    request('GET', '/api/entities/search/top?query=' + query + '&language=' + language, null, cb)    
+    request('GET', '/api/entities/search/top?query=' + query + '&language=' + language, null, cb)
   }
 
   /*
     Get topic results for search query
   */
   searchTopics(query, language, cb) {
-    request('GET', '/api/entities/search/topics?query=' + query + '&language=' + language, null, cb)    
+    request('GET', '/api/entities/search/topics?query=' + query + '&language=' + language, null, cb)
   }
 
   /*
@@ -86,7 +79,7 @@ class ResourceClient {
   }
 
   /*
-    Get list of person first letters with counters 
+    Get list of person first letters with counters
   */
   getPersonsStats(cb) {
     request('GET', '/api/entities/persons/stats', null, cb)

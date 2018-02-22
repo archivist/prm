@@ -56,7 +56,23 @@ class DocumentEngine extends ArchivistDocumentEngine {
     let options = !isEmpty(args.options) ? JSON.parse(args.options) : {}
     let results = {}
 
-    if(!options.columns) options.columns = ['"documentId"', '"schemaName"', '"schemaVersion"', "meta", "title", "language", '"updatedAt"', '(SELECT name FROM users WHERE "userId" = "updatedBy") AS "updatedBy"', '"userId"', '"references"']
+    if(!options.columns) {
+      options.columns = [
+        '"documentId"',
+        "meta->>'cover' AS cover",
+        "meta->>'interview_type' AS interview_type",
+        "meta->>'short_summary' AS summary",
+        "meta->>'abstract' AS abstract",
+        "meta->>'state' AS state",
+        "meta->>'files' AS files",
+        '(SELECT name FROM entities WHERE "entityId" = meta->>\'interview_location\') AS "location"',
+        "title",
+        '"updatedAt"',
+        '(SELECT name FROM users WHERE "userId" = "updatedBy") AS "updatedBy"',
+        '"userId"',
+        '"references"'
+      ]
+    }
 
     let topics = filters.topics ? filters.topics : []
     delete filters.topics
@@ -93,6 +109,40 @@ class DocumentEngine extends ArchivistDocumentEngine {
     }.bind(this))
   }
 
+  listResourceDocuments(resourceId, published, cb) {
+    let publishedProviso = ''
+    if(published) publishedProviso = "AND meta->>'state' = 'published'"
+    let query = `
+      SELECT
+        "documentId",
+        meta->>'cover' AS cover,
+        meta->>'interview_type' AS interview_type,
+        meta->>'short_summary' AS summary,
+        meta->>'abstract' AS abstract,
+        meta->>'state' AS state,
+        meta->>'files' AS files,
+        (SELECT name FROM entities WHERE "entityId" = meta->>'interview_location') AS "location",
+        title,
+        "updatedAt",
+        (SELECT name FROM users WHERE "userId" = "updatedBy") AS "updatedBy",
+        "userId",
+        "references"->>$1 AS count
+      FROM documents
+      WHERE "references" ? $1 ${publishedProviso}
+      ORDER BY count DESC;
+    `
+
+    this.db.run(query, [resourceId], function(err, docs) {
+      if (err) {
+        return cb(new Err('ArchivistDocumentEngine.ListResourceDocumentsError', {
+          cause: err
+        }))
+      }
+
+      cb(null, docs)
+    })
+  }
+
   /*
     Get list of dictinct values for metadata property
   */
@@ -101,6 +151,14 @@ class DocumentEngine extends ArchivistDocumentEngine {
       SELECT DISTINCT ON (meta->$1) meta->$1 AS value
       FROM documents
     `
+
+    if(prop === 'interview_location') {
+      query = `
+        SELECT DISTINCT ON (meta->>$1) meta->>$1 AS value,
+        (SELECT name FROM entities WHERE "entityId" = meta->>$1) AS name
+        FROM documents
+      `
+    }
 
     return new Promise((resolve, reject) => {
       this.db.run(query, [prop], (err, options) => {
@@ -112,6 +170,10 @@ class DocumentEngine extends ArchivistDocumentEngine {
 
         let filtered = filter(options, o => { return !isEmpty(o.value) && o.value !== null })
         let values = map(filtered, opt => { return opt.value })
+
+        if(options.length > 0 && options[0].name) {
+          values = options
+        }
 
         resolve(values)
       })

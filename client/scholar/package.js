@@ -5,8 +5,6 @@ import ReaderPackage from '../../packages/reader/package'
 import InterviewPackage from '../../packages/interview/package'
 import SourceContextPackage from '../../packages/source-context/package'
 import ResourcesContextPackage from '../../packages/resources-context/package'
-import TopicContextPackage from '../../packages/topic-context/package'
-import InfoContextPackage from '../../packages/info-context/package'
 import ScholarSubConfigurator from '../../packages/scholar/ScholarSubConfigurator'
 import DocumentClient from './DocumentClient'
 import ResourceClient from './ResourceClient'
@@ -34,9 +32,7 @@ export default {
     ReaderConfigurator.import(ReaderPackage)
     ReaderConfigurator.import(InterviewPackage)
     ReaderConfigurator.import(SourceContextPackage)
-    ReaderConfigurator.import(TopicContextPackage)
     ReaderConfigurator.import(ResourcesContextPackage)
-    ReaderConfigurator.import(InfoContextPackage)
     ReaderConfigurator.setResourceTypes([
       {id: 'geofeature', name: 'geofeature-resources'},
       {id: 'commentary', name: 'commentary-resources'}
@@ -60,7 +56,8 @@ export default {
       host: appConfig.host,
       port: appConfig.port,
       defaultLanguage: appConfig.defaultLanguage,
-      mediaServer: appConfig.mediaServer
+      mediaServer: appConfig.mediaServer,
+      mediaPath: appConfig.mediaPath
     })
 
     // Define Document Client

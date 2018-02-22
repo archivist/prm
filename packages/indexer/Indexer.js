@@ -203,7 +203,7 @@ ORDER BY count DESC limit ${limit} offset ${offset}`
       ts_rank_cd(entities.tsv, q) AS rank
       FROM entities,
       plainto_tsquery(${language}, ${searchQuery}) AS q
-      WHERE ts_rank_cd(entities.tsv, q) >= 1 AND "entityType" != 'subject'
+      WHERE ts_rank_cd(entities.tsv, q) >= 1 AND "entityType" != 'topic'
       ORDER BY rank DESC
       LIMIT ${limit}
     `
@@ -233,7 +233,7 @@ ORDER BY count DESC limit ${limit} offset ${offset}`
       ts_rank_cd(entities.tsv, q) AS rank
       FROM entities,
       plainto_tsquery(${language}, ${searchQuery}) AS q
-      WHERE ts_rank_cd(entities.tsv, q) >= 1 AND "entityType" = 'subject'
+      WHERE ts_rank_cd(entities.tsv, q) >= 1 AND "entityType" = 'topic'
       ORDER BY rank DESC
       LIMIT ${limit}
     `
@@ -249,6 +249,74 @@ ORDER BY count DESC limit ${limit} offset ${offset}`
         resolve(res)
       })
     }.bind(this))
+  }
+
+  _countEntityReferences(doc) {
+    return new Promise((resolve) => {
+      let entitiesIndex = doc.getIndex('entities')
+      let annotations = []
+      let references = {}
+      forEach(entitiesIndex.byReference, (refs, key) => {
+        annotations.push(key)
+        references[key] = Object.keys(refs).length
+      })
+
+      resolve({
+        annotations: annotations,
+        references: references
+      })
+    })
+  }
+
+  _processNode(nodeId, doc, documentId, prevId, nextId) {
+    let annoIndex = doc.getIndex('annotations')
+    let annos = annoIndex.byPath.getAll(nodeId)
+    let containerAnnoIndex = doc.getIndex('container-annotations')
+    let containerAnnosForNode = containerAnnoIndex.anchorsByPath.getAll(nodeId)
+    let containerAnnos = containerAnnosForNode.map(ca => {return ca._annotationId})
+    let record = {
+      fragmentId: nodeId,
+      documentId: documentId,
+      prev: prevId,
+      next: nextId
+    }
+
+    let timeRegExp = /\{(.*?)\}/
+    let content = doc.get(nodeId).content
+    let timecodes = timeRegExp.exec(content)
+
+    if(!isEmpty(timecodes)) {
+      if(timecodes.length > 1) {
+        record.time = timecodes[1]
+      }
+    }
+    record.content = content.replace(timeRegExp, '')
+    record.references = {}
+    forEach(annos, function(anno) {
+      let ref = anno.reference
+      if(ref) {
+        if(record.references[ref]) {
+          record.references[ref] = record.references[ref] + 1
+        } else {
+          record.references[ref] = 1
+        }
+      }
+    })
+    forEach(containerAnnos, function(annoId) {
+      let anno = doc.get(annoId)
+      let refs = anno.reference
+      refs.forEach(ref => {
+        if(ref) {
+          if(record.references[ref]) {
+            record.references[ref] = record.references[ref] + 1
+          } else {
+            record.references[ref] = 1
+          }
+        }
+      })
+    })
+    record.annotations = Object.keys(record.references)
+    return this._saveFragment(record)
   }
 }
 
