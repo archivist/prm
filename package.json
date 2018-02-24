@@ -19,6 +19,7 @@
     "config": "^1.21.0",
     "dropzone": "^5.1.1",
     "express": "^4.14.0",
+    "font-awesome": "^4.7.0",
     "leaflet": "^1.0.3",
     "leaflet-control-geocoder": "^1.5.4",
     "leaflet.markercluster": "^1.0.0",
@@ -30,12 +31,11 @@
     "sharp": "^0.18.2",
     "substance": "container-annos",
     "substance-bundler": "^0.18.3",
+    "uglify-js": "^2.7.3",
+    "uglify-js-harmony": "^2.7.5",
     "ws": "^1.1.1"
   },
   "devDependencies": {
-    "eslint": "^3.5.0",
-    "font-awesome": "^4.7.0",
-    "uglify-js": "^2.7.3",
-    "uglify-js-harmony": "^2.7.5"
+    "eslint": "^3.5.0"
   }
 }
