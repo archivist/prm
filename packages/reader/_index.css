@@ -19,6 +19,10 @@
   white-space: pre-wrap;
 }
 
+.sc-reader .sc-text-property .sc-comment {
+  background: none;
+}
+
 .sc-reader .se-context-section {
   background: #fafafa;
   border-left: 1px solid var(--border-color);
@@ -90,6 +94,7 @@
 
 .sm-mobile-layout .sc-reader > .sm-active {
   height: 100%;
+  visibility: visible!important;
 }
 
 .sm-mobile-layout .sc-reader > .se-context-section > .sc-context-panel {
@@ -132,6 +137,7 @@
   border-left: none;
   box-shadow: none;
   font-size: 2em;
+  visibility: hidden;
 }
 
 .sm-mobile-layout .sc-reader .sc-media-jumper {
