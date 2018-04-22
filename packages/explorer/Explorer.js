@@ -178,7 +178,10 @@ class Explorer extends Component {
     }
 
     el.append(
-      $$(MetaFilters, {filters: this.state.metaFilters}).ref('filters')
+      $$(MetaFilters, {filters: this.state.metaFilters}).ref('filters'),
+      $$('a').addClass('se-fpr-logo').attr({href:'https://президентскиегранты.рф',target:'_blank'}).append(
+        $$('img').attr('src', '/assets/fpg.png')
+      )
     )
 
     return el
