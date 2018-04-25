@@ -57,7 +57,10 @@ class SourceContext extends Component {
       $$('div').addClass('se-section-title').append(this.getLabel('meta-respondent-data')),
       respondentData,
       $$('div').addClass('se-section-title').append(this.getLabel('meta-interview-data')),
-      interviewData
+      interviewData,
+      $$('a').addClass('se-fpr-logo').attr({href:'https://президентскиегранты.рф',target:'_blank'}).append(
+        $$('img').attr('src', '/assets/fpg.png')
+      )
     )
 
     return el

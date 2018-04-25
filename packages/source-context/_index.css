@@ -53,6 +53,10 @@
   color: initial;
 }
 
+.sc-context-source .se-fpr-logo img {
+  width: 100%;
+}
+
 .sc-overlay-player {
   position: absolute;
   width: 560px;
