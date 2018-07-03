@@ -24,8 +24,8 @@ class Explorer extends Component {
   }
 
   didMount() {
-    this._loadData()
-    this._loadTopics()
+    this.searchData(this.state)
+    this._loadTopics(this.state.filters, this.state.search)
   }
 
   willUpdateState(state) {
@@ -62,10 +62,13 @@ class Explorer extends Component {
   }
 
   getInitialState() {
+    const search = this.props.search ? decodeURI(this.props.search) : ''
+    const topicsList = this.props.topics
+    const topics = topicsList ? topicsList.split(';') : []
     return {
-      filters: {"meta->>'state'": "published", topics: []},
+      filters: {"meta->>'state'": "published", topics: topics},
       metaFilters: {},
-      search: '',
+      search: search,
       resource: this.props.resourceId,
       perPage: 30,
       order: "meta->>'published_on' desc, \"documentId\" desc",

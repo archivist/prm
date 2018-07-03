@@ -10,6 +10,7 @@ class ResourceServer extends ArchivistResourceServer {
     app.get(this.path + '/entities/search/top', this._searchTopEntities.bind(this))
     app.get(this.path + '/entities/search/topics', this._searchTopics.bind(this))
     app.get(this.path + '/entities/locations', this._getLocationsList.bind(this))
+    app.get(this.path + '/entities/main', this._getMainPageData.bind(this))
     app.get(this.path + '/entities/persons', this._getPersonsList.bind(this))
     super.bind(app)
     app.get(this.path + '/entities/persons/stats', this._getPersonsStats.bind(this))
@@ -59,6 +60,35 @@ class ResourceServer extends ArchivistResourceServer {
         res.json(geojson)
       })
       .catch(function(err) {
+        next(err)
+      })
+  }
+
+  /*
+    Get list of all interviews locations and terms
+  */
+  _getMainPageData(req, res, next) {
+    let data = {
+      geo: {},
+      topics: []
+    }
+    let filters = {"meta->>'state'": "published", topics: []}
+    this.engine.getInterviewLocationsList()
+      .then(geojson => {
+        data.geo = geojson.features.map(f => {
+          return {
+            point: f.geometry.coordinates,
+            name: f.properties.name,
+            entityId: f.properties.entityId
+          }
+        })
+        return this.engine.getResourcesFacets(filters, 'topic')
+      })
+      .then(topics => {
+        data.topics = topics
+        res.json(data)
+      })
+      .catch(err => {
         next(err)
       })
   }

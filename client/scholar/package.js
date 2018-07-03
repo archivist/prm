@@ -1,6 +1,8 @@
 import { ProseEditorPackage } from 'substance'
 import ScholarPackage from '../../packages/scholar/package'
+import HeaderPackage from '../../packages/header/package'
 import ExplorerPackage from '../../packages/explorer/package'
+import MapPackage from '../../packages/map/package'
 import ReaderPackage from '../../packages/reader/package'
 import InterviewPackage from '../../packages/interview/package'
 import SourceContextPackage from '../../packages/source-context/package'
@@ -24,6 +26,8 @@ export default {
   configure: function(config) {
     config.import(ScholarPackage)
     config.import(ExplorerPackage)
+    config.import(HeaderPackage)
+    config.import(MapPackage)
     config.setDefaultLanguage(appConfig.defaultLanguage)
 
     // Add subconfigurators
