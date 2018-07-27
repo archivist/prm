@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+
+
+<symbol id="close" viewBox="0 0 24 24">
+    <path d="M 5 5 L 19 19 M 5 19 L 19 5" stroke-width="2" fill="none"/>
+</symbol>
+<symbol id="menu" viewBox="0 0 24 24">
+    <path d="M 5 5 L 19 5 M 5 12 L 19 12 M 5 19 L 19 19 " stroke-width="2" fill="none"/>
+</symbol>
+
+<symbol id="search" viewBox="0 0 24 24">
+    <circle cx="11" cy="11" r="6"  stroke-width="2" fill="none"/>
+    <path d="M 15 15 L 19 19" stroke-width="2" fill="none"/>
+</symbol>
+
+<symbol id="home" viewBox="0 0 24 24">
+    <path d="M 7 11 L 7 19 L 17 19 L 17 11" stroke-width="2" fill="none"/>
+    <path d="M 12 19 L 12 15" stroke-width="2" fill="none"/>
+    <path d="M 5 12 L 12 5 L 19 12" stroke-width="2" fill="none"/>
+
+</symbol>
+
+
+
+</svg>

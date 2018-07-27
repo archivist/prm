@@ -36,7 +36,7 @@ export default {
     })
     config.addLabel('searchbar-placeholder', {
       en: 'Enter search query',
-      ru: 'Введите поисковой запрос'
+      ru: 'Слово или фраза для поиска'
     })
     config.addLabel('searchbar-submit', {
       en: 'Search',

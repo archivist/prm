@@ -1,26 +1,73 @@
 @import './_meta-filters.css';
 @import './_resources.css';
 
+.sc-explorer {
+  background: #ebebeb;
+  color: #1a1a1a;
+  font-family: 'FuturaPTWebBook';
+  font-size: 15px;
+  line-height: 1.6666666667;
+  height: 100%;
+  overflow: auto;
+}
+
 .sc-explorer .se-explorer-layout {
-  height: 100%;
-  position: relative;
-  margin: 10px 0px 0px 0px;
-  height: 100%;
-  position: relative;
-  padding: 10px 20px 0px 20px;
+  height: auto;
+  margin: 0px;
+  padding: 0px;
 }
 
 .sc-explorer .sc-searchbar {
   position: relative;
   z-index: 10;
+  background-color: #0c87cb;
+  text-transform: none;
+  padding: 20px 0px;
+}
+
+.sc-explorer .sc-searchbar > .container {
+  position: relative;
 }
 
 .sc-explorer .sc-searchbar .se-search-input {
+  display: block;
+  width: 100%;
   max-width: 100%;
-  border: 1px solid #E0E4E4;
+  height: 60px;
+  background: transparent;
+  outline: none;
+  border: 1px solid #fff;
+  border-radius: 30px;
+  padding: 20px 30px;
+  line-height: 20px;
+  color: #fff;
+  font-size: 16px;
 }
 
+.sc-explorer .sc-searchbar .se-search-input::placeholder{
+  color: #fff;
+  opacity: 0.5;
+}
+  
 .sc-explorer .sc-searchbar .se-search-submit {
+  position: absolute;
+  right: 30px;
+  top:0px;
+  height: 60px;
+  border:none;
+  outline: none;
+  background: none;
+  padding: 0;
+  color: #fff;
+  cursor: pointer;
+  font-size: 25px;
+  opacity: 0.7;
+}
+.sc-explorer .sc-searchbar .se-search-submit:hover{
+  opacity: 1;
+}
+
+/* .sc-explorer .sc-searchbar .se-search-submit {
   position: absolute;
   top: 5px;
   right: 6px;
@@ -35,28 +82,31 @@
 .sc-explorer .sc-searchbar .se-search-submit:hover,
 .sc-explorer .sc-searchbar .se-search-submit:active {
   background: #4A90E2!important;
-}
+} */
 
 .sc-explorer .se-results-pane {
+  height: auto;
   display: flex;
   flex-flow: row nowrap;
-  margin: 0;
   padding-top: 30px;
 }
 
 .sc-explorer .se-results-pane .sc-grid {
   padding-bottom: 10px;
-  border: 1px solid #E0E4E4;
   border-radius: 3px;
-  padding: 0px 20px;
+  padding: 0px 2px;
   margin-bottom: 10px;
   flex-grow: 1;
-  height: calc(100vh - 100px);
-  overflow: auto;
+  height: auto;
+  overflow: visible;
 }
 
 .sc-explorer .sc-grid .se-row:hover {
   background: none;
+}
+
+.sc-explorer .sc-document-item {
+  border-bottom: none;
 }
 
 .sc-explorer .sc-document-item .se-topic-badges {
@@ -156,8 +206,7 @@
   margin: 0px 0px 0px 20px;
   width: 400px;
   flex: 0 0 auto;
-  height: calc(100vh - 100px);
-  overflow: auto;
+  height: auto;
 }
 
 .sc-explorer .se-sidebar .se-total {
@@ -180,19 +229,15 @@
 }
 
 .sc-explorer .se-panel {
-  border: 1px solid var(--border-color);
-  border-radius: 3px;
   margin-bottom: 10px;
-  position: relative;
+  padding: 20px 30px;
+  background: #fff;
 }
 
 .sc-explorer .se-panel .se-title {
-  font-size: 14px;
+  font-size: 20px;
   color: #000;
-  padding: 10px 50px 10px 10px;
-  background: #fafafa;
-  border-bottom: 1px solid #ddd;
-  border-left: 4px solid transparent;
+  padding: 10px 10px 10px 10px;
 }
 
 .sc-explorer .se-fpr-logo img {
@@ -200,12 +245,11 @@
 }
 
 .sc-facets .se-tree-node {
-  position: relative;
   font-size: 13px;
   font-weight: 400;
-  border-bottom: 1px solid #E0E4E4;
-  padding: 10px 50px 10px 10px;
+  padding: 5px 10px;
   cursor: pointer;
+  color: #0c87cb;
 }
 
 .sc-facets .se-tree-node.level-1 { padding-left: 25px; }
@@ -262,13 +306,11 @@
 
 .sm-mobile-layout .sc-explorer .se-search-pane .se-navigation-toggle.sm-active,
 .sc-explorer .se-results-pane .se-sidebar .se-tree-node.sm-active {
-  color: #4b4b4b;
-  background: #ececec;
+  color: #fff;
+  background: #0c87cb;
   outline: none;
-  -webkit-box-shadow: inset 0px 0px 4px #ccc;
-  -moz-box-shadow: inset 0px 0px 4px #ccc;
-  box-shadow: inset 0px 0px 4px #ccc;
   border-left: none;
+  text-decoration: underline;
 }
 
 .sm-mobile-layout .sc-explorer .se-results-pane .se-sidebar {

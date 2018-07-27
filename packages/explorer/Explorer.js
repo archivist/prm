@@ -19,7 +19,8 @@ class Explorer extends Component {
       'applyMetaFilter': this._applyMetaFilter,
       'applyDateRangeFilter': this._applyDateRangeFilter,
       'resetMetaFilter': this._resetMetaFilter,
-      'resetAllMetaFilters': this._resetAllMetaFilters
+      'resetAllMetaFilters': this._resetAllMetaFilters,
+      'toogleSearch': this._toggleSearch
     })
   }
 
@@ -69,6 +70,7 @@ class Explorer extends Component {
       filters: {"meta->>'state'": "published", topics: topics},
       metaFilters: {},
       search: search,
+      searchbox: true,
       resource: this.props.resourceId,
       perPage: 30,
       order: "meta->>'published_on' desc, \"documentId\" desc",
@@ -88,6 +90,8 @@ class Explorer extends Component {
     if (!documentItems) {
       return el
     }
+    let Header = this.getComponent('header')
+    el.append($$(Header, {searchbox: false}))
 
     let SearchBar = this.getComponent('searchbar')
 
@@ -98,7 +102,7 @@ class Explorer extends Component {
 
     this._updateLayout()
 
-    let resultsPane = $$('div').addClass('se-results-pane')
+    let resultsPane = $$('div').addClass('se-results-pane container')
     let searchPane = $$('div').addClass('se-search-pane').append(
       $$(SearchBar, {value: this.state.search})
     )
@@ -126,13 +130,18 @@ class Explorer extends Component {
         this.renderSidebarSection($$)
       )
     }
+    if(this.state.searchbox) {
+      layout.append(searchPane)
+    }
 
     layout.append(
-      searchPane,
       resultsPane
     )
 
     el.append(layout)
+
+    let Footer = this.getComponent('footer')
+    el.append($$(Footer))
 
     return el
   }
@@ -161,13 +170,13 @@ class Explorer extends Component {
     let MetaFilters = this.getComponent('meta-filters')
     let Facets = this.getComponent('facets')
 
-    if(this.state.total && !this.props.mobile) {
-      el.append(
-        $$('div').addClass('se-total').append(
-          this.getLabel('total-results') + ': ' + this.state.total
-        ).ref('total')
-      )
-    }
+    // if(this.state.total && !this.props.mobile) {
+    //   el.append(
+    //     $$('div').addClass('se-total').append(
+    //       this.getLabel('total-results') + ': ' + this.state.total
+    //     ).ref('total')
+    //   )
+    // }
 
     if(this.state.search) {
       if(!isEmpty(this.state.foundTopics)) el.append($$(TopicEntries, {entries: this.state.foundTopics}))
@@ -181,10 +190,7 @@ class Explorer extends Component {
     }
 
     el.append(
-      $$(MetaFilters, {filters: this.state.metaFilters}).ref('filters'),
-      $$('a').addClass('se-fpr-logo').attr({href:'https://президентскиегранты.рф',target:'_blank'}).append(
-        $$('img').attr('src', '/assets/fpg.png')
-      )
+      $$(MetaFilters, {filters: this.state.metaFilters}).ref('filters')
     )
 
     return el
@@ -554,6 +560,11 @@ class Explorer extends Component {
   _toggleNavigation() {
     const isActive = this.state.showFilters
     this.extendState({showFilters: !isActive})
+  }
+
+  _toggleSearch() {
+    const searchbox = this.state.searchbox
+    this.extendState({searchbox: !searchbox})
   }
 }
 

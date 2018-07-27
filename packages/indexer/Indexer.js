@@ -304,7 +304,7 @@ ORDER BY count DESC limit ${limit} offset ${offset}`
     })
     forEach(containerAnnos, function(annoId) {
       let anno = doc.get(annoId)
-      let refs = anno.reference
+      let refs = anno.reference || []
       refs.forEach(ref => {
         if(ref) {
           if(record.references[ref]) {

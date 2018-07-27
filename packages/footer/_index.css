@@ -1,6 +1,4 @@
 .footer{
-	position: absolute;
-	bottom:0px;
 	width: 100%;
 	height: 260px;
 	padding: 60px 0;
@@ -17,7 +15,7 @@
 
 .footer-links{
 	text-align: right;
-	margin-top: 30px;
+	margin-top: 30px; 
 }
 .footer-links a{
 	margin: 0 0 0 40px;
@@ -27,7 +25,7 @@
 	text-align: right;
 }
 .footer-social a{
-	margin: 0 0 0 20px;
+	margin: 0 0 0 20px; 
 }
 .footer-social a:hover{
 	opacity: 0.5;
@@ -35,7 +33,7 @@
 
 .footer-bottom{
 	clear: both;
-	margin-top:20px;
+	margin-top:20px; 
 }
 
 .footer-copy{
@@ -68,11 +66,32 @@
 		text-align: left;
 	}
 	.footer-social a{
-		margin: 0 20px 0 0;
+		margin: 0 20px 0 0; 
 	}
 	.footer-rules{
 		float: none;
 		text-align: left;
-		margin: 20px 0;
+		margin: 20px 0; 
 	}
+}
+
+.rules-overlay{
+	position: fixed;
+	left: 0;top:0;right: 0;bottom: 0;
+	background: rgba(0,0,0,0.7);
+	display: none;
+	z-index: 1000;
+}
+.rules-content{
+	position: fixed;
+	left: 50px;top:50px;right: 50px;bottom: 50px;
+	padding:30px;		
+	background: #fff;
+	overflow-y: auto;	 
+
+}
+.rules-close{
+	position: fixed;
+	top: 10px;
+	right: 10px;
 }

@@ -1,6 +1,7 @@
 import { ProseEditorPackage } from 'substance'
 import ScholarPackage from '../../packages/scholar/package'
 import HeaderPackage from '../../packages/header/package'
+import FooterPackage from '../../packages/footer/package'
 import ExplorerPackage from '../../packages/explorer/package'
 import MapPackage from '../../packages/map/package'
 import ReaderPackage from '../../packages/reader/package'
@@ -27,6 +28,7 @@ export default {
     config.import(ScholarPackage)
     config.import(ExplorerPackage)
     config.import(HeaderPackage)
+    config.import(FooterPackage)
     config.import(MapPackage)
     config.setDefaultLanguage(appConfig.defaultLanguage)
 

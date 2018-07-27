@@ -3,7 +3,6 @@ import { Component } from 'substance'
 class SearchBar extends Component {
 
   render($$) {
-    const Button = this.getComponent('button')
     const Input = this.getComponent('input')
 
     let el = $$('div').addClass('sc-searchbar')
@@ -13,13 +12,16 @@ class SearchBar extends Component {
       .addClass('se-search-input')
       .on('keypress', this._onSearchKeyPress)
 
-    let submitBtn = $$(Button, {theme: 'round', label: 'searchbar-submit', icon: 'searchbar-search'})
+    let submitBtn = $$('button')
       .addClass('se-search-submit')
       .on('click', this._onSearch)
+      .append('→')
 
     el.append(
-      inputSearch,
-      submitBtn
+      $$('div').addClass('container').append(
+        inputSearch,
+        submitBtn
+      )
     )
 
     return el
