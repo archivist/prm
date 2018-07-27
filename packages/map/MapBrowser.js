@@ -74,16 +74,19 @@ class MapBrowser extends Component {
   render($$) {
     let el = $$('div').addClass('sc-maps')
     let Header = this.getComponent('header')
+    let Footer = this.getComponent('footer')
     el.append(
-      $$(Header),
-      $$('div').addClass('se-map')
-        .attr({id: 'map'})
-        .ref('map'),
-      $$(Sidebar, {
-        filters: this.state.filters,
-        locations: this.state.locations
-        //location: this.state.location
-      }).ref('sidebar')
+      $$(Header, {menu: 'maps'}),
+      $$('div').addClass('se-geo-browser').append(
+        $$('div').addClass('se-map')
+          .attr({id: 'map'})
+          .ref('map'),
+        $$(Sidebar, {
+          filters: this.state.filters,
+          locations: this.state.locations
+        }).ref('sidebar')
+      ),
+      $$(Footer)
     )
 
     return el

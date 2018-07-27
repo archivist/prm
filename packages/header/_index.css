@@ -1,3 +1,8 @@
+.sc-prm-header {
+  background: #ebebeb;
+  font-family: 'FuturaPTWebBook';
+}
+
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2018 Twitter, Inc.
@@ -2511,10 +2516,9 @@ display: none!important;
 padding-top: 60px;
 padding-bottom: 60px;
 font-size: 40px;
+font-weight: 600;
 line-height: 40px;
-font-family: 'FuturaPTWebMedium';
 text-transform: uppercase;
-Qcolor: #0c87cb;
 color: #191919;
 }
 
@@ -2724,7 +2728,7 @@ text-transform: none;
 display: none;
 }
 
-.search-form  form{
+.search-form .form{
 display: block;
 position: relative;
 padding: 10px 0 40px;
@@ -2749,10 +2753,10 @@ color: #fff;
 opacity: 0.5;
 }
 
-.search-form  button{
+.search-form button{
 position: absolute;
 right: 30px;
-top:0px;
+top:10px;
 height: 60px;
 border:none;
 outline: none;

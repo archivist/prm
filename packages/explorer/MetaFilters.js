@@ -4,6 +4,7 @@ import { forEach, isEmpty, isUndefined } from 'lodash-es'
 class MetaFilters extends Component {
   didMount() {
     this._loadOptionValues()
+    this._loadInterviewLocations()
   }
 
   getInitialState() {
@@ -168,7 +169,6 @@ class MetaFilters extends Component {
   _loadOptionValues() {
     let documentClient = this.context.documentClient
     let props = [
-      "interview_location",
       "respondent_year_of_birth"
     ]
     documentClient.loadMetaOptionValues(props, (err, res) => {
@@ -178,8 +178,21 @@ class MetaFilters extends Component {
       }
 
       this.extendState({
-        interviewLocation: res.interview_location,
         yearOfBirth: res.respondent_year_of_birth
+      })
+    })
+  }
+
+  _loadInterviewLocations() {
+    let documentClient = this.context.documentClient
+    documentClient.loadInterviewLocations((err, res) => {
+      if (err) {
+        console.error('Option values could not be loaded', err)
+        return
+      }
+
+      this.extendState({
+        interviewLocation: res.geo.map(g=>{return {name: g.name, value: g.entityId}})
       })
     })
   }

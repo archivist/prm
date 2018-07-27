@@ -43,6 +43,10 @@ class ScholarDocumentClient extends DocumentClient {
     let optionsRequest = encodeURIComponent(JSON.stringify(options))
     request('GET', '/api/documents/options/values?props=' + optionsRequest, null, cb)
   }
+
+  loadInterviewLocations(cb) {
+    request('GET', '/api/entities/main', null, cb)
+  }
 }
 
 export default ScholarDocumentClient

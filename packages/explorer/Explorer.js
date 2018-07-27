@@ -91,7 +91,7 @@ class Explorer extends Component {
       return el
     }
     let Header = this.getComponent('header')
-    el.append($$(Header, {searchbox: false}))
+    el.append($$(Header, {searchbox: false, menu: 'archive'}))
 
     let SearchBar = this.getComponent('searchbar')
 
@@ -219,7 +219,7 @@ class Explorer extends Component {
           $$('div').addClass('se-rect5')
         ),
         $$('h2').html(
-          'Loading...'
+          'Загрузка...'
         )
       )
     }
