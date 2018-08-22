@@ -33,6 +33,8 @@ node_modules
 # DB files
 *.sqlite3
 
+*.code-workspace
+
 # Production config
 config/production.json
 ecosystem.json
