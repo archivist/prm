@@ -33,6 +33,20 @@ class Header extends Component {
         window.location.replace(window.location.origin+'/#search='+searchInput.val());
       })
     }
+
+    let navbar = this.el.find('#navbar')
+    let closeMobileMenu = this.el.find('.mobile-close a')
+    let openMobileMenu = this.el.find('.navbar-toggle')
+
+    closeMobileMenu.on('click', e => {
+      e.preventDefault()
+      navbar.setStyle('display','none')
+    })
+
+    openMobileMenu.on('click', e => {
+      e.preventDefault()
+      navbar.setStyle('display','block')
+    })
   }
 
   render($$) {
@@ -51,7 +65,7 @@ class Header extends Component {
     let searchForm = $$('div').addClass('search-form').setStyle('display','none')
       .setInnerHTML('<div class="container"><div class="form"><input class="search-input" type="text" name="query" autocomplete="off" placeholder="Слово или фраза для поиска" value=""><button class="submit" title="Искать">→</button></div></div>')
 
-    let navbar = $$('div').addClass('navbar navbar-default').append(
+    let navbar = $$('nav').addClass('navbar navbar-default').append(
       $$('div').addClass('container').append(
         navbarHeader,
         lists

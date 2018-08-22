@@ -2773,9 +2773,10 @@ opacity: 1;
 
 
 @media (max-width: 767px){
-.search-form form{
+.sc-searchbar .container {
 	top:-20px;
-	padding-bottom: 20px; 
-
+}
+.sc-explorer .sc-searchbar .se-search-submit {
+	right: 60px;
 }
 }
