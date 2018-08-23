@@ -68,8 +68,8 @@ function buildApp(app, production) {
         'substance': 'substance',
         'archivist-js': 'archivist-js'
       },
-      buble: production === true,
-      useStrict: production !== true
+      buble: false,
+      useStrict: true
     })
 
     b.custom('injecting config', {
