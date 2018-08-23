@@ -82,7 +82,7 @@
 }
 
 .sm-mobile-layout .se-entity-entries .sc-entity-entry .se-description {
-  font-size: 30px;
+  font-size: 1.2em;
 }
 
 .sm-mobile-layout .se-entity-entries .sc-entity-entry a {
@@ -101,7 +101,7 @@
 }
 
 .sm-mobile-layout .sc-context-source .se-meta-prop.se-meta-topics .se-meta-value {
-  font-size: 3em;
+  font-size: 1em;
   line-height: 1em;
 }
 

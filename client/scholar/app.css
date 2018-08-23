@@ -33,3 +33,7 @@ body {
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
 }
+
+body.sm-mobile-layout {
+	height: 100%;
+}

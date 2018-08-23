@@ -43,15 +43,15 @@ class ReaderContext extends Component {
   willReceiveProps(newProps) {
     // TODO: loop through config
     if(newProps.time !== this.props.time && newProps.time !== undefined) {
-      this._switchTab('source')
+      this._switchTab('source', true)
     }
 
     if(newProps.entityId !== this.props.entityId && newProps.entityId !== undefined) {
-      this._switchTab('resources')
+      this._switchTab('resources', true)
     }
 
     if(newProps.topic !== this.props.topic && newProps.topic !== undefined) {
-      this._switchTab('resources')
+      this._switchTab('resources', true)
     }
   }
 
@@ -123,9 +123,9 @@ class ReaderContext extends Component {
     return el
   }
 
-  _switchTab(contextId) {
+  _switchTab(contextId, silent) {
     const currentContext = this.state.contextId
-    if(currentContext === contextId || !currentContext) {
+    if((currentContext === contextId || !currentContext) && !silent) {
       if(contextId === 'source' || currentContext === undefined) {
         contextId = 'resources'
       } else if (contextId === 'resources') {

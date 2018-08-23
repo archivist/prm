@@ -42,8 +42,8 @@ class MapBrowser extends Component {
       },
       locations: {},
       location: this.props.resourceId,
-      defaultLocation: [48.6, 18.8],
-      defaultZoom: 5
+      defaultLocation: [58, 61],
+      defaultZoom: 4
     }
   }
 
@@ -158,7 +158,7 @@ class MapBrowser extends Component {
     if (type === 'ординарное место') {
       icon = 'globe'
     } else if (type === 'место взятия интервью') {
-      icon = 'microphone'
+      icon = 'map-pin'
     } else if (type === 'место исторических событий') {
       icon = 'map-marker'
     } else if (type === 'место коммеморации') {

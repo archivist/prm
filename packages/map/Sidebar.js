@@ -139,7 +139,7 @@ class Sidebar extends Component {
       if (id === 'ординарное место') {
         icon = 'globe'
       } else if (id === 'место взятия интервью') {
-        icon = 'microphone'
+        icon = 'map-pin'
       } else if (id === 'место исторических событий') {
         icon = 'map-marker'
       } else if (id === 'место коммеморации') {

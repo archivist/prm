@@ -62,7 +62,7 @@ class Reader extends ProseEditor {
 
     el.append(
       $$('div').addClass('se-navigation-toggle').append(
-        $$(Icon, {icon: 'fa-bars'})
+        $$(Icon, {icon: 'fa-comments'})
       ).ref('headerToggle').on('click', this._toggleNavigation)
     )
 

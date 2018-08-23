@@ -4,6 +4,8 @@
 }
 
 .sc-maps .se-geo-browser {
+  position: relative;
+  height: 80vh;
   display: flex;
   flex-flow: row nowrap;
 }

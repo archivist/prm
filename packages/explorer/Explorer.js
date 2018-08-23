@@ -109,21 +109,20 @@ class Explorer extends Component {
 
     if(this.props.mobile) {
       let navigationToggle = $$('div').addClass('se-navigation-toggle').append(
-        $$(Icon, {icon: 'fa-bars'}).ref('headerIcon')
+        $$(Icon, {icon: 'fa-filter'}).ref('headerIcon')
       ).on('click', this._toggleNavigation)
 
       if(this.state.showFilters) {
         resultsPane.append(
+          navigationToggle.addClass('sm-active'),
           this.renderSidebarSection($$)
         )
-        navigationToggle.addClass('sm-active')
       } else {
         resultsPane.append(
+          navigationToggle,
           this.renderMainSection($$)
         )
       }
-
-      searchPane.append(navigationToggle)
     } else {
       resultsPane.append(
         this.renderMainSection($$),
