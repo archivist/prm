@@ -30,12 +30,14 @@ class SourceContext extends Component {
     )
 
     let respondentData = $$('div').addClass('se-respondent-data se-section').append(
+      $$('div').addClass('se-section-title').append(this.getLabel('meta-respondent-data')),
       this._renderMetaProp($$, 'respondent_year_of_birth'),
       this._renderMetaProp($$, 'respondent_profession'),
       this._renderMetaProp($$, 'respondent_bio')
     )
 
     let interviewData = $$('div').addClass('se-interview-data se-section').append(
+      $$('div').addClass('se-section-title').append(this.getLabel('meta-interview-data')),
       this._renderMetaProp($$, 'interview_record_type', (value) => {
         return this.getLabel('meta-source-' + value)
       }),
@@ -54,9 +56,7 @@ class SourceContext extends Component {
     el.append(
       this._renderCover($$),
       interviewMainData,
-      $$('div').addClass('se-section-title').append(this.getLabel('meta-respondent-data')),
       respondentData,
-      $$('div').addClass('se-section-title').append(this.getLabel('meta-interview-data')),
       interviewData,
       $$('a').addClass('se-fpr-logo').attr({href:'https://президентскиегранты.рф',target:'_blank'}).append(
         $$('img').attr('src', '/assets/fpg.png')

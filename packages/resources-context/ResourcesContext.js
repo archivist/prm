@@ -51,11 +51,13 @@ class ResourcesContext extends Component {
     return configurator.getContextItem(entityType)
   }
 
-  renderEntityContext($$, resourceType) {
+  renderEntityContext($$, context) {
+    let resourceType = context.id
     let entityId = this.state.entityId
 
-    let entityEntries = $$("div")
-      .addClass("se-entity-entries")
+    let entityEntries = $$("div").addClass("se-entity-entries").append(
+      $$('div').addClass('se-title').append(this.getLabel(context.name))
+    )
 
     let entries = this.getEntries(resourceType)
 
@@ -90,7 +92,9 @@ class ResourcesContext extends Component {
     filter(topics, topic => {
       if(activeTopics.indexOf(topic.entityId) > -1) activeNodes.push(topic)
     })
-    let topicsPanel = $$('div').addClass('se-topic-entries')
+    let topicsPanel = $$('div').addClass('se-topic-entries').append(
+      $$('div').addClass('se-title').append(this.getLabel('topic-resources'))
+    )
 
     if(activeNodes) {
       activeNodes.forEach(topic => {
@@ -116,14 +120,12 @@ class ResourcesContext extends Component {
     let contexts = configurator.getResourceTypes()
     let ScrollPane = this.getComponent('scroll-pane')
     let entityPanel = $$('div').addClass('sc-entity-panel').append(
-      $$('div').addClass('se-title').append(this.getLabel('topic-resources')),
       this.renderTopics($$)
     )
 
     contexts.forEach(context => {
       entityPanel.append(
-        $$('div').addClass('se-title').append(this.getLabel(context.name)),
-        this.renderEntityContext($$, context.id)
+        this.renderEntityContext($$, context)
       )
     })
 

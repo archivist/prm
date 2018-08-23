@@ -61,6 +61,7 @@ class ReaderLayout extends Component {
   render($$) {
     let Layout = this.getComponent('layout')
     let Spinner = this.getComponent('spinner')
+    let Header = this.getComponent('header')
 
     let el = $$('div').addClass('sc-read-document')
     let main = $$(Layout, {
@@ -78,7 +79,10 @@ class ReaderLayout extends Component {
       }).ref('reader')
     }
 
-    el.append(main)
+    el.append(
+      $$(Header, {menu: 'archive'}),
+      main
+    )
 
     return el
   }

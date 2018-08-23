@@ -1,0 +1,43 @@
+.sc-timecode {
+  font-family: Courier;
+  background: #444;
+  color: #fff;
+}
+
+.sc-media-jumper {
+  display: block;
+  position: initial;
+  color: #989898;
+  background: none;
+  width: auto;
+  height: auto;
+  left: 0px;
+  margin-bottom: 10px;
+}
+
+.sc-media-jumper:hover,
+.sc-media-jumper:focus {
+  color: inherit;
+  text-decoration: none;
+}
+
+.sc-media-jumper::before {
+  font-family: FontAwesome;
+  content: "\f01d";
+  color: #000;
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: 100;
+  opacity: 0.7;
+  position: relative;
+  top: 3px;
+  margin-right: 10px;
+}
+
+.sc-media-jumper:hover::before {
+  opacity: 1; 
+}
+
+.sc-media-jumper::after {
+  content: "";
+}

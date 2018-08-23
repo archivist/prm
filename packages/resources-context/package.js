@@ -5,8 +5,8 @@ export default {
   configure: function(config) {
     config.addContext('resources', ResourcesContext, false)
     config.addIcon('resources', {'fontawesome': 'fa-comments'})
-    config.addIcon('map-link', {'fontawesome': 'fa-crosshairs'})
-    config.addIcon('resource-link', {'fontawesome': 'fa-book'})
+    config.addIcon('map-link', {'fontawesome': 'fa-map-marker'})
+    config.addIcon('resource-link', {'fontawesome': 'fa-file-text-o'})
     config.addLabel('resources', {
       en: 'Commentary',
       ru: 'Комментарий'

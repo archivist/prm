@@ -2,13 +2,14 @@ import Interview from './Interview'
 import MetaNode from './MetaNode'
 import InterviewSeed from './InterviewSeed'
 
-import { BasePackage, ParagraphPackage, HeadingPackage, LinkPackage, EmphasisPackage, StrongPackage} from 'substance'
-import { CommentPackage, TimecodePackage } from 'archivist-js'
+import { BasePackage, ParagraphPackage, HeadingPackage, LinkPackage, EmphasisPackage, StrongPackage } from 'substance'
+import { CommentPackage } from 'archivist-js'
 import CommentaryPackage from '../commentary/package'
 import GeofeaturePackage from '../geofeature/package'
 import TopicPackage from '../topic/package'
 import EntityReferencePackage from '../entity-reference/package'
 import FilePackage from '../files/package'
+import TimecodePackage from '../timecode/package'
 
 export default {
   name: 'archivist-interview',

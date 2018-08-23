@@ -58,8 +58,10 @@ class CommentaryContextItem extends Component {
       .append(this.context.iconProvider.renderIcon($$, 'resource-link'))
 
     el.append(
-      $$('div').addClass('se-title').append(node.name),
-      resourceLink,
+      $$('div').addClass('se-header').append(
+        $$('div').addClass('se-title').append(node.name),
+        resourceLink
+      ),
       $$('div').addClass('se-description').setInnerHTML(node.description)
     )
 

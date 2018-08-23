@@ -35,7 +35,7 @@ class ReaderContext extends Component {
 
     if(this.props.topic) {
       this.extendState({
-        contextId: 'subjects'
+        contextId: 'resources'
       })
     }
   }
@@ -51,7 +51,7 @@ class ReaderContext extends Component {
     }
 
     if(newProps.topic !== this.props.topic && newProps.topic !== undefined) {
-      this._switchTab('subjects')
+      this._switchTab('resources')
     }
   }
 
@@ -124,6 +124,14 @@ class ReaderContext extends Component {
   }
 
   _switchTab(contextId) {
+    const currentContext = this.state.contextId
+    if(currentContext === contextId || !currentContext) {
+      if(contextId === 'source' || currentContext === undefined) {
+        contextId = 'resources'
+      } else if (contextId === 'resources') {
+        contextId = 'source'
+      }
+    }
     this.extendState({
       contextId: contextId
     })

@@ -71,10 +71,12 @@ class GeofeatureContextItem extends Component {
       .append(this.context.iconProvider.renderIcon($$, 'map-link'))
 
     el.append(
-      $$('div').addClass('se-title').append(node.name),
+      $$('div').addClass('se-header').append(
+        $$('div').addClass('se-title').append(node.name),
+        resourceLink,
+        mapLink
+      ),
       $$('div').addClass('se-location').append(location),
-      resourceLink,
-      mapLink,
       $$('div').addClass('se-description').setInnerHTML(node.description)
     )
 
