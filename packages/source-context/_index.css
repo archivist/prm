@@ -55,6 +55,11 @@
   color: initial;
 }
 
+.sc-context-source .se-fpr-logo {
+  display: block;
+  margin-top: 20px;
+}
+
 .sc-context-source .se-fpr-logo img {
   width: 100%;
 }
@@ -104,7 +109,7 @@
 .sm-mobile-layout .sc-overlay-player {
   width: 100%;
   z-index: 99;
-  top: 90px;
+  top: 70px;
 }
 
 .sm-mobile-layout .sc-context-source .se-meta-prop {

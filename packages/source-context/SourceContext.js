@@ -57,10 +57,10 @@ class SourceContext extends Component {
       this._renderCover($$),
       interviewMainData,
       respondentData,
-      interviewData
-      // $$('a').addClass('se-fpr-logo').attr({href:'https://президентскиегранты.рф',target:'_blank'}).append(
-      //   $$('img').attr('src', '/assets/fpg.png')
-      // )
+      interviewData,
+      $$('a').addClass('se-fpr-logo').attr({href:'https://президентскиегранты.рф',target:'_blank'}).append(
+        $$('img').attr('src', '/assets/fpg.png')
+      )
     )
 
     return el
@@ -148,7 +148,7 @@ class SourceContext extends Component {
     let readerContext = this.context.readerContext
     let player = readerContext.getPlayer()
     let playerHeight = player.el.getHeight()
-    this.el.css({top: playerHeight - 40})
+    this.el.css({top: playerHeight})
   }
 }
 
