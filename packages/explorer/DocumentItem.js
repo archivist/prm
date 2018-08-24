@@ -24,7 +24,7 @@ class DocumentItem extends Component {
     let photo = config.mediaServer + '/s200/' + item.cover
     if(!item.cover) photo = config.protocol + '://' + config.host + ':' + config.port + '/assets/default.png'
     let photoEl = $$('div').addClass('se-document-photo')
-    photoEl.css({'background-image': 'url(' + photo + ')'})
+    photoEl.css({'background-image': 'url("' + photo + '")'})
 
     let el = $$('div').addClass('sc-document-item se-row').append(
       $$(Grid.Cell, {columns: 3}).addClass('se-photo').append(photoEl),
