@@ -49,6 +49,7 @@ MetaNode.define({
   interview_persons_present: { type: 'string', default: '', field: {editor: "text", description: "Присутствующие лица", group: 'Interview Data'}},
   interview_transcriber: {type: 'string', default: '', field: {editor: "text", description: "Расшифровщик", group: 'Interview Data'}},
   interview_media_id: {type: 'string', default: '', field: {editor: "text", description: "Идентификатор исходного файла", group: 'Interview Data'}},
+  cover: {type: 'string', default: '', field: {editor: "text", description: "Фото", group: 'Interview Data'}},
 
   // respondent_type: {type: 'string', default: '', field: {editor: "text", description: "Тип респондента", group: 'Respondent Data'}},
   respondent_sex: {type: 'string', default: '', field: {editor: "select", description: "Пол респондента", options: ['мужчина', 'женщина'], group: 'Respondent Data'}},
@@ -63,8 +64,7 @@ MetaNode.define({
   comment: {type: 'string', default: '', field: {editor: "multitext", description: "Введите комментарий", group: 'Other'}},
   published_on: {type: 'string', default: '', field: {editor: "input", dataType: "date", description: "Дата публикации (yyyy-MM-dd)", group: 'Other'}},
   state: { type: 'string', default: '', field: { editor: "select", description: "Статус документа", options: ['transcripted', 'verified', 'finished', 'published'], group: 'Other'}},
-  files: { type: ['metafile'], default: [] },
-  cover: { type: 'string', default: '' }
+  files: { type: ['metafile'], default: [] }
 })
 
 export default MetaNode
