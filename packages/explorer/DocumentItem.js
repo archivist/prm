@@ -21,7 +21,7 @@ class DocumentItem extends Component {
       .append(item.title)
 
     // Photo badge
-    let photo = config.mediaPath + '/s200/' + item.cover
+    let photo = config.mediaServer + '/s200/' + item.cover
     if(!item.cover) photo = config.protocol + '://' + config.host + ':' + config.port + '/assets/default.png'
     let photoEl = $$('div').addClass('se-document-photo')
     photoEl.css({'background-image': 'url(' + photo + ')'})
