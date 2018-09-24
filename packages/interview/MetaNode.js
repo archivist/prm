@@ -47,7 +47,7 @@ MetaNode.define({
   interview_duration: {type: 'number', default: 0, field: {editor: "input", dataType: "number", description: "Длинна интервью", group: 'Interview Data'}},
   interview_conductor: {type: 'string', default: '', field: {editor: "text", description: "Интервьюер", group: 'Interview Data'}},
   interview_persons_present: { type: 'string', default: '', field: {editor: "text", description: "Присутствующие лица", group: 'Interview Data'}},
-  interview_transcriber: {type: 'string', default: '', field: {editor: "text", description: "Расшифровщик", group: 'Interview Data'}},
+  // interview_transcriber: {type: 'string', default: '', field: {editor: "text", description: "Расшифровщик", group: 'Interview Data'}},
   interview_media_id: {type: 'string', default: '', field: {editor: "text", description: "Идентификатор исходного файла", group: 'Interview Data'}},
   cover: {type: 'string', default: '', field: {editor: "text", description: "Фото", group: 'Interview Data'}},
 

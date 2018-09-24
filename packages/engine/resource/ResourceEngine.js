@@ -107,6 +107,7 @@ class ResourceEngine extends ArchivistResourceEngine {
     let query = `
       SELECT "entityId", name, "entityType", data,
       (SELECT COUNT(*) FROM documents WHERE "references" ? "entityId") AS cnt,
+      (SELECT COUNT(*) FROM documents WHERE meta->>'interview_location' = "entityId" AND meta->>'state' = 'published') AS docs,
       (SELECT SUM(("references"->"entityId")::text::integer) FROM documents WHERE "references" ? "entityId") AS sum
       FROM entities
       WHERE "entityType" = 'geofeature' AND data->>'point' != '{}' AND data->'featureType' ? 'место взятия интервью'
@@ -134,10 +135,10 @@ class ResourceEngine extends ArchivistResourceEngine {
             "properties": entity.data
           }
           feature.properties.entityId = entity.entityId
-          feature.properties.documents = entity.cnt
+          feature.properties.documents = entity.docs
           feature.properties.fragments = entity.sum
 
-          if(!isNull(entity.data.point) && entity.data.point.length > 0) geojson.features.push(feature)
+          if(!isNull(entity.data.point) && entity.data.point.length > 0 && entity.docs > 0) geojson.features.push(feature)
         })
 
         resolve(geojson)

@@ -65,8 +65,9 @@ class Explorer extends Component {
   getInitialState() {
     const search = this.props.search ? decodeURI(this.props.search) : ''
     const topicsList = this.props.topics
+    const location = this.props.location
     const topics = topicsList ? topicsList.split(';') : []
-    return {
+    let state = {
       filters: {"meta->>'state'": "published", topics: topics},
       metaFilters: {},
       search: search,
@@ -79,6 +80,11 @@ class Explorer extends Component {
       topics: [],
       items: []
     }
+    if (location) {
+      state.filters["meta->>'interview_location'"] = location
+      state.metaFilters["interview_location"] = location
+    }
+    return state
   }
 
   render($$) {

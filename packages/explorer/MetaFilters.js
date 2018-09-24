@@ -192,7 +192,11 @@ class MetaFilters extends Component {
       }
 
       this.extendState({
-        interviewLocation: res.geo.map(g=>{return {name: g.name, value: g.entityId}})
+        interviewLocation: res.geo.sort(function (a, b) {
+          if (a.name < b.name) return -1
+          if (a.name > b.name) return 1
+          return 0
+        }).map(g=>{return {name: g.name, value: g.entityId}})
       })
     })
   }

@@ -77,6 +77,7 @@ class ResourceServer extends ArchivistResourceServer {
       .then(geojson => {
         data.geo = geojson.features.map(f => {
           return {
+            docs: f.properties.documents,
             point: f.geometry.coordinates,
             name: f.properties.name,
             entityId: f.properties.entityId
