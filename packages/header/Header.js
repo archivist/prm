@@ -53,8 +53,13 @@ class Header extends Component {
     let el = $$('div').addClass('sc-prm-header')
 
     el.append(
-      $$('div').addClass('container main-header')
-        .append('100 лет после гражданской войны')
+      $$('div').addClass('container main-header').append(
+        $$('div').addClass('main-header')
+          .append(
+            'После бунта: ',
+            $$('span').append('память о тамбовском и западно‑сибирском восстаниях')
+          )
+      )
     )
 
     let navbarHeader = $$('div').addClass('navbar-header').setInnerHTML('<button type="button" class="navbar-toggle collapsed nav-icon" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons.svg#menu"></use></svg></button><a class="mobile-search mobile nav-icon show-search" href="#"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/icons.svg#search"></use></svg></a>')

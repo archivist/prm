@@ -2513,13 +2513,16 @@ display: none!important;
 /********* header *********/
 
 .main-header{
-padding-top: 60px;
-padding-bottom: 60px;
-font-size: 40px;
-font-weight: 600;
-line-height: 40px;
-text-transform: uppercase;
-color: #191919;
+  padding: 25px 0;
+  font-size: 40px;
+  line-height: 50px;
+  font-family: 'FuturaPTWebMedium';
+  text-transform: uppercase;
+  color: #0c87cb;
+}
+
+.main-header span {
+  color: #191919;
 }
 
 @media (max-width: 1199px){
