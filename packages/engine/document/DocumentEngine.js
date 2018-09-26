@@ -128,7 +128,7 @@ class DocumentEngine extends ArchivistDocumentEngine {
         "userId",
         "references"->>$1 AS count
       FROM documents
-      WHERE "references" ? $1 ${publishedProviso}
+      WHERE "references" ? $1 OR meta->>'interview_location' = $1 ${publishedProviso}
       ORDER BY count DESC;
     `
 

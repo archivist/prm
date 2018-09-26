@@ -52,13 +52,18 @@ class Header extends Component {
   render($$) {
     let el = $$('div').addClass('sc-prm-header')
 
+    let isMobile = document.querySelectorAll('.sm-mobile-layout').length > 0 
+    let desktopHeader = $$('div').addClass('main-header')
+      .append(
+        'После бунта: ',
+        $$('span').append('память о тамбовском и западно‑сибирском восстаниях')
+      )
+    let mobileHeader = $$('div').addClass('main-header')
+      .append('После бунта')
+
     el.append(
       $$('div').addClass('container main-header').append(
-        $$('div').addClass('main-header')
-          .append(
-            'После бунта: ',
-            $$('span').append('память о тамбовском и западно‑сибирском восстаниях')
-          )
+        isMobile ? mobileHeader : desktopHeader
       )
     )
 

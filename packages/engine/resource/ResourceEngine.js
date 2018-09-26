@@ -126,7 +126,6 @@ class ResourceEngine extends ArchivistResourceEngine {
           type: "FeatureCollection",
           features: []
         }
-        let counter = 0
         each(entities, function(entity) {
           let feature = {
             "type": "Feature",
@@ -143,7 +142,6 @@ class ResourceEngine extends ArchivistResourceEngine {
             geojson.features.push(feature)
           }
         })
-        console.log(counter)
         resolve(geojson)
       })
     })

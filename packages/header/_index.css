@@ -2537,8 +2537,9 @@ display: none!important;
 .main-header{
 	background: #0088cf;
 	color: #fff;
-	padding: 60px 40px 40px;
-	font-size: 30px; 
+	padding: 10px 0 0;
+  font-size: 30px;
+  text-align: center;
 }
 .main-header span{
 	display: block;

@@ -64,6 +64,7 @@
 }
 
 .sc-map-sidebar .se-location-details {
+  height: calc(100% - 180px);
   padding: 10px;
   overflow: auto;
 }
