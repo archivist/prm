@@ -26,6 +26,8 @@ class Explorer extends Component {
 
   didMount() {
     this.searchData(this.state)
+    this.searchResources(this.state.search)
+    this.searchTopics(this.state.search)
     this._loadTopics(this.state.filters, this.state.search)
   }
 
